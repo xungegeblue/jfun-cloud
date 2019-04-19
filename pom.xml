@@ -17,5 +17,30 @@
         <module>jfun-secKill</module>
     </modules>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+    </parent>
 
+
+    <properties>
+        <spring-cloud-dependencies.version>Edgware.RELEASE</spring-cloud-dependencies.version>
+        <java.version>1.8</java.version>
+        <docker.image.prefix>cloud</docker.image.prefix>
+        <docker.plugin.version>1.0.0</docker.plugin.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Dalston.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>
