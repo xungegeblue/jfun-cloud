@@ -1,0 +1,25 @@
+server:
+  port: 6002
+
+logging.level.org.springframework.security: DEBUG
+
+spring:
+  #  datasource:
+  #    url: jdbc:log4jdbc:mysql://127.0.0.1:3306/oauth2?useUnicode=true&characterEncoding=utf-8
+  #    username: root
+  #    password: root
+  #    driver-class-name: net.sf.log4jdbc.DriverSpy
+
+#  jpa:
+#    hibernate:
+#      ddl-auto: none
+
+#logging:
+#  level:
+#    jdbc: error
+#    jdbc.sqltiming: info
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
