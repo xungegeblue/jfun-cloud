@@ -57,7 +57,7 @@ server:
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: cn.xiejx.jfun.entity
+  type-aliases-package: jfun.entity
 pagehelper:
   helper-dialect: mysql
   params: count=countSql

@@ -1,5 +1,6 @@
 package jfun.config;
 
+import jfun.service.impl.JfunUserDetailsService;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,14 +22,20 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    //    @Bean
+//    @Override
+//    protected UserDetailsService userDetailsService(){
+//        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+//        manager.createUser(User.withUsername("user_1").password("123456").authorities("USER").build());
+//        manager.createUser(User.withUsername("user_2").password("123456").authorities("USER").build());
+//        return manager;
+//    }
     @Bean
     @Override
-    protected UserDetailsService userDetailsService(){
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user_1").password("123456").authorities("USER").build());
-        manager.createUser(User.withUsername("user_2").password("123456").authorities("USER").build());
-        return manager;
+    public UserDetailsService userDetailsService() {
+        return new JfunUserDetailsService();
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off

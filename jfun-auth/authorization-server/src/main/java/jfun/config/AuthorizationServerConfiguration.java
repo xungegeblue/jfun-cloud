@@ -9,11 +9,13 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.oauth2.config.annotation.builders.ClientDetailsServiceBuilder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.approval.ApprovalStore;
 import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
@@ -49,7 +51,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     DataSource dataSource;
 
 
-
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //配置两个客户端,一个用于password认证一个用于client认证
@@ -70,6 +71,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         */
         //客户端数据保存在数据库中,会读取这个配置
         clients.jdbc(dataSource);
+//                .withClient("client_1")
+//                .resourceIds(DEMO_RESOURCE_ID)
+//                .authorizedGrantTypes("client_credentials")
+//                .scopes("select")
+//                .authorities("test")
+//                .secret("123456");
+
     }
 
 
