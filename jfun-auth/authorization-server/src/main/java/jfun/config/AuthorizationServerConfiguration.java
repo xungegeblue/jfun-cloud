@@ -2,6 +2,8 @@ package jfun.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
@@ -12,8 +14,15 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.approval.ApprovalStore;
+import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
+import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
+
+import javax.sql.DataSource;
 
 /**
  * @Auther: miv
@@ -35,9 +44,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     UserDetailsService userDetailsService;
 
+    @Qualifier("dataSource")
+    @Autowired
+    DataSource dataSource;
+
+
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         //配置两个客户端,一个用于password认证一个用于client认证
+
+        /**数据保存在内存中
         clients.inMemory().withClient("client_1")
                 .resourceIds(DEMO_RESOURCE_ID)
                 .authorizedGrantTypes("client_credentials")
@@ -50,13 +67,37 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .scopes("select")
                 .authorities("oauth2")
                 .secret("123456");
+        */
+        //客户端数据保存在数据库中,会读取这个配置
+        clients.jdbc(dataSource);
+    }
+
+
+    /**
+     * 授权码模式持久化授权码code
+     *
+     * @return JdbcAuthorizationCodeServices
+     */
+    @Bean
+    protected AuthorizationCodeServices authorizationCodeServices() {
+        //授权码存储等处理方式类，使用jdbc，操作oauth_code表
+        return new JdbcAuthorizationCodeServices(dataSource);
+    }
+    /**
+     * 授权信息持久化实现
+     * @return JdbcApprovalStore
+     */
+    @Bean
+    public ApprovalStore approvalStore() {
+        return new JdbcApprovalStore(dataSource);
     }
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .tokenStore(new RedisTokenStore(redisConnectionFactory))
-                .tokenStore(new InMemoryTokenStore())
+                .authorizationCodeServices(authorizationCodeServices())
+                .approvalStore(approvalStore())
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
                 // 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
