@@ -18,8 +18,12 @@ spring:
 #  level:
 #    jdbc: error
 #    jdbc.sqltiming: info
-
 security:
   oauth2:
+    client:
+      client-id: client
+      client-secret: secret
+      access-token-uri: http://localhost:6001/oauth/token
+      user-authorization-uri: http://localhost:6001/oauth/authorize
     resource:
-      filter-order: 3
+      token-info-uri: http://localhost:6001/oauth/check_token
