@@ -16,8 +16,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @Author 谢镜勋
@@ -51,18 +53,10 @@ public class JfunUserDetailsService implements UserDetailsService {
     }
 
     private List<GrantedAuthority> getGrantedAuthorityByRole(Set<Role> roles) {
-        List<GrantedAuthority> data = new ArrayList<>();
-        if (roles == null) {
-            return data;
-        } else {
-            roles.stream().forEach(role -> {
-                role.getPermissions().stream().forEach(
-                        permission -> {
-                            data.add(new SimpleGrantedAuthority(permission.getName()));
-                        }
-                );
-            });
-        }
-        return data;
+        return roles.stream()
+                .map(role -> role.getPermissions())
+                .flatMap(Collection::stream)
+                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
+                .collect(Collectors.toList());
     }
 }
