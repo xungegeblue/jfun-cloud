@@ -23,7 +23,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
     }
-
+    /*
     @Override
     public void configure(HttpSecurity http) throws Exception {
         // @formatter:off
@@ -40,5 +40,5 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasPermission('delete')")
                 .antMatchers("/order/**").authenticated();//配置order访问控制，必须认证过后才可以访问
         // @formatter:on
-    }
+    }*/
 }

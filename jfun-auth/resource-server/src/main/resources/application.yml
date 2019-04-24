@@ -27,6 +27,8 @@ security:
       user-authorization-uri: http://localhost:6001/oauth/authorize
     resource:
       token-info-uri: http://localhost:6001/oauth/check_token
+      prefer-token-info: true
+      filter-order: 3 #则使用spring security的控制，反之则为oauth2的控制
 logging:
   level:
     root: INFO
