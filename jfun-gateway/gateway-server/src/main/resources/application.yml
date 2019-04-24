@@ -7,6 +7,7 @@ spring:
         locator:
           enabled: true
       routes:
+      enabled: true
 
 
 feign:
