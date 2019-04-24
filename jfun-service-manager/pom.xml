@@ -9,12 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>jfun-gateway</artifactId>
+    <artifactId>jfun-service-manager</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>gateway-server</module>
+        <module>nacos-client</module>
+        <module>eureka-server</module>
     </modules>
-
 
 </project>
