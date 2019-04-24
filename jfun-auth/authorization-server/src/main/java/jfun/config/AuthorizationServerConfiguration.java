@@ -1,5 +1,6 @@
 package jfun.config;
 
+import jfun.po.JfunTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,11 +24,17 @@ import org.springframework.security.oauth2.provider.approval.JdbcApprovalStore;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 
 /**
  * @Auther: miv
@@ -103,15 +110,40 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         return new JdbcApprovalStore(dataSource);
     }
 
+
+    //集成jwt
+    @Bean
+    public TokenStore jwtTokenStore() {
+        return new JwtTokenStore(accessTokenConverter());
+    }
+    //集成jwt
+    @Bean
+    public JwtAccessTokenConverter accessTokenConverter() {
+        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+        converter.setSigningKey("123");
+        return converter;
+    }
+
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return new JfunTokenEnhancer();
+    }
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        //添加jwt附加信息
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(
+                Arrays.asList(tokenEnhancer(), accessTokenConverter()));
+
         endpoints
-                .tokenStore(new RedisTokenStore(redisConnectionFactory))
+//                .tokenStore(new RedisTokenStore(redisConnectionFactory)) //redis
+                .tokenStore(jwtTokenStore()) //单独使用jwt，不附加信息
+                //.accessTokenConverter(accessTokenConverter())单独使用jwt，不附加信息
+                .tokenEnhancer(tokenEnhancerChain)//使用jwt，附加信息
                 .authorizationCodeServices(authorizationCodeServices())
                 .approvalStore(approvalStore())
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
-                // 2018-4-3 增加配置，允许 GET、POST 请求获取 token，即访问端点：oauth/token
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
 
         endpoints.reuseRefreshTokens(true);
