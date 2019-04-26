@@ -47,6 +47,8 @@ public class SqlDefinitionRepository implements RouteDefinitionRepository {
 
         pds.add(pd);
         rd.setPredicates(pds);
+//        rd.setOrder();
+//        rd.setFilters();
         return rd;
     }
 
