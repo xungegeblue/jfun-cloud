@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
  * @Author 谢镜勋
  * @Date 2019/4/24
  */
-@Component
+//@Component
 public class JfunGatewayFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
         return null;

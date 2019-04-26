@@ -1,18 +1,17 @@
 spring:
   application:
     name: gateway-service
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-      routes:
-      enabled: true
+# 路由跳转百度的例子
+#  cloud:
+#    gateway:
+#      routes:
+#      - id: rewritepath_route
+#        uri: https://www.baidu.com
+#        predicates:
+#        - Path=/foo/**
+#        filters:
+#        - RewritePath=/foo/(?<segment>.*), /$\{segment}
 
-
-feign:
-  hystrix:
-    enabled: true
 server:
   port: 6003
 logging:
