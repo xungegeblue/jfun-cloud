@@ -23,4 +23,20 @@ public class RouteDefinitionService extends ServiceImpl<RouteMapper, RouteDefini
         List<RouteDefinitionEntity> list = baseMapper.selectList(null);
         return list;
     }
+
+    @Override
+    public void insert(RouteDefinitionEntity resource) {
+        baseMapper.insert(resource);
+    }
+
+    @Override
+    public void update(RouteDefinitionEntity resource) {
+        baseMapper.updateById(resource);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        baseMapper.deleteById(id);
+    }
+
 }

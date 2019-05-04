@@ -12,5 +12,12 @@ import java.util.List;
  * @Description:
  */
 public interface IRouteDefinitionService {
+
     List<RouteDefinitionEntity> getAll();
+
+    void insert(RouteDefinitionEntity resource);
+
+    void update(RouteDefinitionEntity resource);
+
+    void delete(Integer id);
 }

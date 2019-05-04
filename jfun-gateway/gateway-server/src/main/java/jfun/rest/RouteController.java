@@ -31,7 +31,7 @@ public class RouteController {
         RouteDefinition rd = new RouteDefinition();
         BeanUtils.copyProperties(routeDefinition, rd);
         dynamicRouteService.add(rd);
-
+        routeDefinitionService.insert(routeDefinition);
         return ResponseEntity.ok().build();
     }
 
@@ -39,6 +39,7 @@ public class RouteController {
     @DeleteMapping("/route/{id}")
     public ResponseEntity delete(@PathVariable String id) {
         dynamicRouteService.delete(id);
+        routeDefinitionService.delete(Integer.valueOf(id));
         return ResponseEntity.ok().build();
     }
 
@@ -53,6 +54,10 @@ public class RouteController {
     //更新路由
     @PutMapping("/route")
     public ResponseEntity update(@RequestBody RouteDefinitionEntity routeDefinition) {
+        RouteDefinition rd = new RouteDefinition();
+        BeanUtils.copyProperties(routeDefinition, rd);
+        dynamicRouteService.update(rd);
+        routeDefinitionService.update(routeDefinition);
         return ResponseEntity.ok().build();
     }
 
