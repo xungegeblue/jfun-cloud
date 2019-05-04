@@ -1,5 +1,8 @@
 package jfun.server;
 
+import jfun.dao.RouteMapper;
+import jfun.entity.RouteDefinitionEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.cloud.gateway.route.RouteDefinitionWriter;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author 谢镜勋
@@ -23,12 +27,22 @@ public class DynamicRouteService implements ApplicationEventPublisherAware {
 
     private ApplicationEventPublisher publisher;
 
+
     private void notifyChanged() {
         this.publisher.publishEvent(new RefreshRoutesEvent(this));
     }
 
     public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
         this.publisher = applicationEventPublisher;
+    }
+
+    /**
+     * 获取所有路由
+     * @return
+     */
+    public List<RouteDefinitionEntity> all(){
+
+        return null;
     }
 
     /**

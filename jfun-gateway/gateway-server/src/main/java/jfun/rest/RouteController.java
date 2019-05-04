@@ -2,6 +2,7 @@ package jfun.rest;
 
 import jfun.entity.RouteDefinitionEntity;
 import jfun.server.DynamicRouteService;
+import jfun.server.impl.RouteDefinitionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -20,6 +21,9 @@ public class RouteController {
 
     @Autowired
     DynamicRouteService dynamicRouteService;
+
+    @Autowired
+    RouteDefinitionService routeDefinitionService;
 
     //添加路由
     @PostMapping("/route")
@@ -41,8 +45,8 @@ public class RouteController {
 
     //查询路由
     @GetMapping("/route")
-    public ResponseEntity get(@RequestBody RouteDefinitionEntity routeDefinition) {
-        return ResponseEntity.ok().build();
+    public ResponseEntity get() {
+        return ResponseEntity.ok(routeDefinitionService.getAll());
     }
 
 

@@ -29,5 +29,5 @@ mybatis-plus:
 pagehelper:
   helper-dialect: mysql
   params: count=countSql
-  reasonable: truejfun_auth.sql
+  reasonable: true
   support-methods-arguments: true
