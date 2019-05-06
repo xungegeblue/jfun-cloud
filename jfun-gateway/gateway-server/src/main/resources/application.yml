@@ -31,3 +31,8 @@ pagehelper:
   params: count=countSql
   reasonable: truejfun_auth.sql
   support-methods-arguments: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
