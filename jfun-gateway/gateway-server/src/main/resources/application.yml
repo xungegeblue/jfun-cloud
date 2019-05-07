@@ -1,6 +1,6 @@
 spring:
   application:
-    name: gateway-service
+    name: gateway-jfun.service
 # 路由跳转百度的例子
 #  cloud:
 #    gateway:
@@ -36,3 +36,8 @@ management:
     web:
       exposure:
         include: "*"
+info:
+  blog-url: www.xiejx.cn
+  author: Miv
+  version: 1.0
+  description: jfun cloud

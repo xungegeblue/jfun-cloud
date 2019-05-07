@@ -3,6 +3,7 @@ package jfun.config;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import jfun.server.IRouteDefinitionService;
+import jfun.util.GsonUtil;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -38,6 +39,7 @@ public class SqlDefinitionRepository implements RouteDefinitionRepository {
     public Flux<RouteDefinition> getRouteDefinitions() {
 
         log.info("获取路由信息...");
+
         List<RouteDefinition> routeList = iRouteDefinitionService.getAll().stream().map(routeDefinitionEntity -> {
             RouteDefinition d = new RouteDefinition();
 
@@ -56,7 +58,7 @@ public class SqlDefinitionRepository implements RouteDefinitionRepository {
             }.getType();
             List<PredicateDefinition> predicateDefinitions = gson.fromJson(routeDefinitionEntity.getPredicates(),type);
             d.setPredicates(predicateDefinitions);
-            log.info("路由信息：{}",routeDefinitionEntity.toString());
+            log.info("路由信息：\n {}", GsonUtil.prettyJSON(d));
             return d;
         }).collect(Collectors.toList());
 

@@ -15,7 +15,7 @@
         <module>jfun-log</module>
         <module>jfun-order</module>
         <module>jfun-secKill</module>
-        <module>jfun-service-manager</module>
+        <module>jfun-jfun.service-manager</module>
     </modules>
 
     <parent>

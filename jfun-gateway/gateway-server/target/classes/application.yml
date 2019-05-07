@@ -36,3 +36,8 @@ management:
     web:
       exposure:
         include: "*"
+info:
+  blog-url: www.xiejx.cn
+  author: Miv
+  version: 1.0
+  description: jfun cloud

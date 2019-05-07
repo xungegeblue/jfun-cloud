@@ -10,7 +10,7 @@
         </encoder>
 
         <!--添加我们自定义的filter-->
-        <!--<filter class="cn.xiejx.jfun.config.websocket.LogFilter"></filter>-->
+        <!--<filter class="cn.xiejx.jfun.jfun.config.websocket.LogFilter"></filter>-->
     </appender>
 
     <!--普通日志输出到控制台-->
@@ -19,7 +19,7 @@
     </root>
 
     <!-- logback为java中的包 -->
-    <logger name="me.aurora.rest" level="WARN" additivity="false"/>
+    <logger name="me.aurora.jfun.rest" level="WARN" additivity="false"/>
 
     <!--监控sql日志输出 -->
     <logger name="jdbc.sqlonly" level="INFO" additivity="false">

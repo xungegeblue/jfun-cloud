@@ -5,11 +5,15 @@ import jfun.server.DynamicRouteService;
 import jfun.server.impl.RouteDefinitionService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.gateway.actuate.GatewayControllerEndpoint;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * @Author 谢镜勋
@@ -29,7 +33,15 @@ public class RouteController {
     @PostMapping("/route")
     public ResponseEntity create(@RequestBody RouteDefinitionEntity routeDefinition) {
         RouteDefinition rd = new RouteDefinition();
+        Timestamp t = new Timestamp(new Date().getTime());
+
+        routeDefinition.setCreatedTime(t);
+        routeDefinition.setUpdatedTime(t);
+        routeDefinition.setCreatedBy("system");
+        routeDefinition.setUpdatedBy("system");
+
         BeanUtils.copyProperties(routeDefinition, rd);
+//        GatewayControllerEndpoint a;
         dynamicRouteService.add(rd);
         routeDefinitionService.insert(routeDefinition);
         return ResponseEntity.ok().build();
