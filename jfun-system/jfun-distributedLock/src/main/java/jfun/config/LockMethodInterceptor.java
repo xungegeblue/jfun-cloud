@@ -9,6 +9,7 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 import jfun.service.CacheKeyGenerator;
 
@@ -23,7 +24,7 @@ import java.util.UUID;
  * @Description:
  */
 @Aspect
-@AutoConfigureAfter(RedisAutoConfiguration.class)
+@Configuration
 public class LockMethodInterceptor {
 
     @Autowired
@@ -59,7 +60,7 @@ public class LockMethodInterceptor {
             }
         } finally {
             // TODO 如果演示的话需要注释该代码;实际应该放开
-            redisLockHelper.unlock(lockKey, value);
+            // redisLockHelper.unlock(lockKey, value);
         }
     }
 

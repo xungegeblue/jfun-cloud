@@ -48,9 +48,7 @@ public class RedisLockHelper {
      * @return true or false
      */
     public boolean tryLock(final String lockKey, final String value, final long time, final TimeUnit unit) {
-        //return stringRedisTemplate.execute((RedisCallback<Boolean>) connection -> connection.set(lockKey.getBytes(), value.getBytes(), Expiration.from(time, unit), RedisStringCommands.SetOption.SET_IF_ABSENT));
-//        stringRedisTemplate.execute(RedisCallback<Boolean>);
-        return true;
+        return stringRedisTemplate.execute((RedisCallback<Boolean>) connection -> connection.set(lockKey.getBytes(), value.getBytes(), Expiration.from(time, unit), RedisStringCommands.SetOption.SET_IF_ABSENT));
     }
 
     /**
