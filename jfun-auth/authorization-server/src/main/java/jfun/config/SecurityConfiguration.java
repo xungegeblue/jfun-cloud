@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
@@ -33,6 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //        manager.createUser(User.withUsername("user_2").password("123456").authorities("USER").build());
 //        return manager;
 //    }
+
+
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
@@ -46,7 +49,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .requestMatchers().anyRequest()
                 .and()
                 .authorizeRequests()
-                .antMatchers("/oauth/*").permitAll();
+                .antMatchers("/oauth/**").permitAll()
+                .antMatchers("/validata/**").permitAll()
+                .antMatchers("/clients").permitAll()
+                .antMatchers("/clients/**").permitAll()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/css/**").permitAll()
+                .antMatchers("/js/**").permitAll()
+                .antMatchers("/images/**").permitAll()
+        ;
+
         http.csrf().disable();
         // @formatter:on
     }
@@ -54,7 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(daoAuthenticationProvider());
-
+        //auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){

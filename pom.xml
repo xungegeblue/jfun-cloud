@@ -16,6 +16,10 @@
         <module>jfun-order</module>
         <module>jfun-secKill</module>
         <module>jfun-jfun.service-manager</module>
+        <module>jfun-user</module>
+        <module>jfun-config</module>
+        <module>jfun-business</module>
+        <module>jfun-common</module>
     </modules>
 
     <parent>

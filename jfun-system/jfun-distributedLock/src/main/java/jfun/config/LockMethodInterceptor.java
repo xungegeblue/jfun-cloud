@@ -60,7 +60,7 @@ public class LockMethodInterceptor {
             }
         } finally {
             // TODO 如果演示的话需要注释该代码;实际应该放开
-            // redisLockHelper.unlock(lockKey, value);
+             redisLockHelper.unlock(lockKey, value);
         }
     }
 
