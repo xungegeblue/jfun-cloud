@@ -7,17 +7,17 @@
 
     <artifactId>jfun-auth</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <modules>
         <module>authorization-server</module>
-        <module>resource-server</module>
     </modules>
 
     <parent>
-        <groupId>jfun-cloud</groupId>
-        <artifactId>cn.xiejx</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <groupId>cn.xiejx</groupId>
+        <artifactId>jfun-cloud</artifactId>
+        <version>1.0</version>
     </parent>
 
+    
 
 </project>

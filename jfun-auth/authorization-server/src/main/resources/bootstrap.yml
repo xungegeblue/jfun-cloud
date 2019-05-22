@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: AUTHORIZATION-SREVER
+  cloud:
+    nacos:
+      config:
+        server-addr: ${jfun.nacos-addr}
+        file-extension: yml
+        prefix: authorization-server
+      discovery:
+        server-addr: ${jfun.nacos-addr}
+  main:
+    allow-bean-definition-overriding: true
+
+
+jfun:
+  nacos-addr: 127.0.0.1:8848

@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: GATEWAY-SERVER
+  cloud:
+    nacos:
+      config:
+        server-addr: ${jfun.nacos-addr}
+        file-extension: yml
+        prefix: gateway-server
+      discovery:
+        server-addr: ${jfun.nacos-addr}
+jfun:
+  nacos-addr: 127.0.0.1:8848
+
