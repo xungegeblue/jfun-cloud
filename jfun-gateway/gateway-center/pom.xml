@@ -14,6 +14,12 @@
 
     <dependencies>
 
+        <!-- boot -->
+        <dependency>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-springboot-starter</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!-- gateway -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -22,10 +28,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <!-- redis -->
         <dependency>
