@@ -2,7 +2,7 @@ package com.central.common.feign.fallback;
 
 import feign.hystrix.FallbackFactory;
 import com.central.common.feign.UserService;
-import com.central.common.vo.User;
+import com.central.common.model.User;
 import lombok.extern.slf4j.Slf4j;
 
 /**

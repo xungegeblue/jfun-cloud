@@ -14,6 +14,7 @@
     <version>1.0</version>
     <modules>
         <module>gateway-center</module>
+        <module>zuul-center</module>
     </modules>
 
 

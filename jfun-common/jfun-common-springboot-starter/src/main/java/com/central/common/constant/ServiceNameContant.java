@@ -9,8 +9,8 @@ package com.central.common.constant;
  */
 public interface ServiceNameContant {
     //用户中心服务
-    String USER_CENTER = "user-center";
+    String USER_CENTER = "USER-CENTER";
 
     //搜索中心服务
-    String SEARCH_CENTER = "search-center";
+    String SEARCH_CENTER = "SEARCH-CENTER";
 }

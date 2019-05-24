@@ -1,16 +1,18 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   profiles:
     active: dev
   application:
-    name: GATEWAY-SERVER
+    name: GATEWAY-CENTER
   cloud:
     nacos:
       config:
         server-addr: ${jfun.nacos-addr}
         file-extension: yml
-        prefix: gateway-server
+        prefix: gateway-center
       discovery:
         server-addr: ${jfun.nacos-addr}
 jfun:
   nacos-addr: 127.0.0.1:8848
-
+debug: true
