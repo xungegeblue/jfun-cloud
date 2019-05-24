@@ -14,7 +14,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulServer;
  * @Email: 787824374@qq.com
  * @Description:
  */
-@EnableZuulServer
+@EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ZuulCenter {
