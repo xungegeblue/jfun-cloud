@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.central.user.dao.MenuMapper">
+    <select id="findByRoleCodes" resultType="com.central.common.model.Menu">
+        select * from sys_menu where sys_menu.id in
+        (
+        select menu_id  from sys_roles_menus where  role_id in
+        <foreach collection="roleCodes" index="index" item="roleCode"
+                 open="(" separator="," close=")">
+            #{roleCode}
+        </foreach>
+        )
+    </select>
+</mapper>

@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>jfun-common-springboot-starter</module>
+        <module>jfun-common-redis-starter</module>
     </modules>
 
-
-</project>
+ </project>

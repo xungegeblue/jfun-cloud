@@ -1,23 +1,18 @@
 spring:
+  main:
+    allow-bean-definition-overriding: true
   profiles:
     active: dev
   application:
-    name: AUTHORIZATION-SREVER
+    name: USER-CENTER
   cloud:
     nacos:
       config:
         server-addr: ${jfun.nacos-addr}
         file-extension: yml
-        prefix: authorization-server
+        prefix: user-center
       discovery:
         server-addr: ${jfun.nacos-addr}
-  main:
-    allow-bean-definition-overriding: true
-  redis:
-    host: 127.0.0.1
-    port: 6379
-  thymeleaf:
-    suffix: .html
-    cache: false
+
 jfun:
   nacos-addr: 127.0.0.1:8848

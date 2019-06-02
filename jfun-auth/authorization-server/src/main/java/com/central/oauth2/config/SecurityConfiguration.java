@@ -1,6 +1,10 @@
 package com.central.oauth2.config;
 
+import com.central.common.constant.SecurityConstants;
+import com.central.oauth2.constants.FromLoginConstant;
+import com.central.oauth2.properties.SecurityProperties;
 import com.central.oauth2.service.SQLUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  * @Auther: miv
@@ -23,43 +29,37 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    @Autowired
+    private AuthenticationFailureHandler authenticationFailureHandler;
+
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        return new SQLUserDetailsService();
+    public PasswordEncoder passwordEncoder() {
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
+
+    SecurityProperties securityProperties = new SecurityProperties();
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http
-                .requestMatchers().anyRequest()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").authenticated()
-                .antMatchers("/validata/**").permitAll()
-                .antMatchers("/clients").permitAll()
-                .antMatchers("/clients/**").permitAll()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/css/**").permitAll()
-                .antMatchers("/js/**").permitAll()
-                .antMatchers("/images/**").permitAll()
-        ;
-
-        http.csrf().disable();
+                //表单登录,loginPage为登录请求的url,loginProcessingUrl为表单登录处理的URL
+                .formLogin().loginPage(FromLoginConstant.LOGIN_PAGE).loginProcessingUrl(FromLoginConstant.LOGIN_PROCESSING_URL)
+                //允许访问
+                .and().authorizeRequests().antMatchers(
+                "/user/hello",
+                FromLoginConstant.LOGIN_PROCESSING_URL,
+                FromLoginConstant.LOGIN_PAGE,
+                securityProperties.getOauthLogin().getOauthLogin(),
+                securityProperties.getOauthLogin().getOauthGrant()).permitAll().anyRequest().authenticated()
+                //禁用跨站伪造
+                .and().csrf().disable();
         // @formatter:on
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
-
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
-    }
 
     @Bean
     @Override

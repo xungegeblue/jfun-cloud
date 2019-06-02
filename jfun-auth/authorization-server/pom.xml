@@ -40,24 +40,28 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--读取文件配置-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--页面要用到的框架-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!--服务消费-->
         <dependency>
             <groupId>cn.xiejx</groupId>
             <artifactId>jfun-common-springboot-starter</artifactId>
             <version>1.0</version>
         </dependency>
-        <!--加入spring security spring security oauth2的处理-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security.oauth</groupId>-->
-<!--            <artifactId>spring-security-oauth2</artifactId>-->
-<!--            <version>2.0.14.RELEASE</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.security</groupId>-->
-<!--            <artifactId>spring-security-jwt</artifactId>-->
-<!--            <version>1.0.10.RELEASE</version>-->
-<!--        </dependency>-->
-        <!-- -->
+        <dependency>
+            <groupId>com.github.axet</groupId>
+            <artifactId>kaptcha</artifactId>
+            <version>0.0.9</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-security</artifactId>
@@ -89,8 +93,8 @@
         </dependency>
         <!-- redis -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-redis-starter</artifactId>
         </dependency>
 
         <!-- nacos -->
@@ -104,5 +108,6 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
             <version>${nacos-config-spring-boot.version}</version>
         </dependency>
+
     </dependencies>
 </project>

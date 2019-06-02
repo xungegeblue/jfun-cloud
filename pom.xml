@@ -41,6 +41,7 @@
         <nacos.version>0.2.1.RELEASE</nacos.version>
         <jwt.version>1.0.10.RELEASE</jwt.version>
         <jfun.cloud.version>1.0</jfun.cloud.version>
+
     </properties>
 
    
@@ -79,6 +80,31 @@
         </dependency>
     </dependencies>
 
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>cn.xiejx</groupId>
+                <artifactId>jfun-common-springboot-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xiejx</groupId>
+                <artifactId>jfun-common</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xiejx</groupId>
+                <artifactId>jfun-common-redis-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
