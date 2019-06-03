@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.provider.AuthorizationRequest;
+import org.springframework.security.oauth2.provider.endpoint.AuthorizationEndpoint;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -73,13 +75,10 @@ public class Oauth2Controller {
      */
     @RequestMapping("/oauth/confirm_access")
     public String getAccessConfirmation(Map<String, Object> model, HttpServletRequest request) throws Exception {
-        @SuppressWarnings("unchecked")
-        Map<String, String> scopes = (Map<String, String>) (model.containsKey("scopes") ? model.get("scopes") : request.getAttribute("scopes"));
-        List<String> scopeList = new ArrayList<>();
-        if (scopes != null) {
-            scopeList.addAll(scopes.keySet());
-        }
-        model.put("scopeList", scopeList);
+
+        AuthorizationRequest rq = (AuthorizationRequest) model.get("authorizationRequest");
+        model.put("clientId", rq.getClientId());
+        model.put("scopeList", rq.getScope());
         return securityProperties.getOauthLogin().getOauthGrant();
     }
 

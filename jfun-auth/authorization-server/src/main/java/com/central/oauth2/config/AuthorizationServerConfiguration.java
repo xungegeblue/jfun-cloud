@@ -43,7 +43,6 @@ import java.util.Arrays;
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
-    private static final String DEMO_RESOURCE_ID = "order";
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -68,7 +67,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
                 .userDetailsService(userDetailsService)
                 .tokenStore(tokenStore())
                 .authorizationCodeServices(authorizationCodeServices())
-                .reuseRefreshTokens(true);
+                .reuseRefreshTokens(false);
     }
     //定义令牌端点约束
     @Override
@@ -83,21 +82,20 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     //客户端信息
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        /*
-        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
-        builder
-                //设置客户端和密码
-                .withClient("client_1").secret("123456")
-                //设置token有效期
-                .accessTokenValiditySeconds(7 * 24 * 3600)
-                //设置refreshToken有效期
-                .refreshTokenValiditySeconds(7 * 24 * 3600)
-                //支持的认证方式
-                    .authorizedGrantTypes("refresh_token", "authorization_code", "password").autoApprove(false)
-                //授权域
-                .scopes("select","app");
 
-         */
+//        InMemoryClientDetailsServiceBuilder builder = clients.inMemory();
+//        builder
+//                //设置客户端和密码
+//                .withClient("client_1").secret("123456")
+//                //设置token有效期
+//                .accessTokenValiditySeconds(7 * 24 * 3600)
+//                //设置refreshToken有效期
+//                .refreshTokenValiditySeconds(7 * 24 * 3600)
+//                //支持的认证方式
+//                    .authorizedGrantTypes("refresh_token", "authorization_code", "password").autoApprove(false)
+//                //授权域
+//                .scopes("app","write");
+
         JdbcClientDetailsServiceBuilder builder = clients.jdbc(dataSource);
 
     }

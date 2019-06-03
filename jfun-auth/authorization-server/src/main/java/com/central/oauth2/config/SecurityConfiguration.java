@@ -44,19 +44,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         // @formatter:off
         http
-                //表单登录,loginPage为登录请求的url,loginProcessingUrl为表单登录处理的URL
                 .formLogin().loginPage(FromLoginConstant.LOGIN_PAGE).loginProcessingUrl(FromLoginConstant.LOGIN_PROCESSING_URL)
-                //允许访问
-                .and().authorizeRequests().antMatchers(
-                "/user/hello",
+                .successHandler(authenticationSuccessHandler)
+                .failureHandler(authenticationFailureHandler)
+                .and()
+                .authorizeRequests().antMatchers(
                 FromLoginConstant.LOGIN_PROCESSING_URL,
                 FromLoginConstant.LOGIN_PAGE,
                 securityProperties.getOauthLogin().getOauthLogin(),
-                securityProperties.getOauthLogin().getOauthGrant()).permitAll().anyRequest().authenticated()
-                //禁用跨站伪造
-                .and().csrf().disable();
+                securityProperties.getOauthLogin().getOauthGrant()).permitAll().anyRequest().authenticated().and()
+
+                .csrf().disable();
         // @formatter:on
     }
 
