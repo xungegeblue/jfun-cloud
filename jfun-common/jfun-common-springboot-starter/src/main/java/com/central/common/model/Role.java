@@ -24,4 +24,6 @@ public class Role implements Serializable {
     @TableField(exist = false)
     private Set<Permission> permissions;
 
+    @TableField(exist = false)
+    private Set<Menu> menus;
 }

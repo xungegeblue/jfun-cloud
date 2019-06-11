@@ -34,4 +34,7 @@ public class Menu {
      * 是否为外链 true/false
      */
     private Boolean iFrame;
+
+    @TableField(exist = false)
+    private List<Menu> children;
 }

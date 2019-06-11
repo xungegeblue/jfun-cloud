@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @TableName(value = "sys_permission")
@@ -23,5 +24,8 @@ public class Permission implements Serializable {
 
     @TableField(value = "create_time")
     private Timestamp createTime;
+
+    @TableField(exist = false)
+    private List<Permission> children;
 
 }

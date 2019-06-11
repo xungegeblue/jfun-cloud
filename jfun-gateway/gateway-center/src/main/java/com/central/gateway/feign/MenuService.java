@@ -19,6 +19,8 @@ import java.util.List;
  */
 @FeignClient(name = ServiceNameContant.USER_CENTER, fallbackFactory = MenuServiceFallbackFactory.class, decode404 = true)
 public interface MenuService {
-    @GetMapping(value = "/menus/{roleCodes}")
+
+    //弃用
+    @GetMapping(value = "/menu/{roleCodes}")
     List<MenuVo> findByRoleCodes(@PathVariable("roleCodes") String roleCodes);
 }

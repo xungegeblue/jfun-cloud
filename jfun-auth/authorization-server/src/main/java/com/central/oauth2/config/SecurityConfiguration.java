@@ -15,6 +15,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -28,11 +30,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
-    @Autowired
-    private AuthenticationFailureHandler authenticationFailureHandler;
 
 
     @Bean
@@ -48,17 +45,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // @formatter:off
         http
                 .formLogin().loginPage(FromLoginConstant.LOGIN_PAGE).loginProcessingUrl(FromLoginConstant.LOGIN_PROCESSING_URL)
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler)
                 .and()
                 .authorizeRequests().antMatchers(
+                "/oauth/**",
                 FromLoginConstant.LOGIN_PROCESSING_URL,
                 FromLoginConstant.LOGIN_PAGE,
                 securityProperties.getOauthLogin().getOauthLogin(),
                 securityProperties.getOauthLogin().getOauthGrant()).permitAll().anyRequest().authenticated().and()
-
                 .csrf().disable();
         // @formatter:on
+
     }
 
 

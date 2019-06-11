@@ -1,7 +1,8 @@
 package com.central.common.feign.fallback;
 
+import com.central.common.vo.LoginAppUser;
 import feign.hystrix.FallbackFactory;
-import com.central.common.feign.UserService;
+import com.central.common.feign.AppUserService;
 import com.central.common.model.User;
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,14 +14,14 @@ import lombok.extern.slf4j.Slf4j;
  * @Description:
  */
 @Slf4j
-public class UserServiceFallbackFactory implements FallbackFactory<UserService> {
+public class UserServiceFallbackFactory implements FallbackFactory<AppUserService> {
 
-    public UserService create(final Throwable throwable) {
-        return new UserService(){
+    public AppUserService create(final Throwable throwable) {
+        return new AppUserService(){
 
-            public Object findByUsername(String username) {
+            public LoginAppUser findByUsername(String username) {
                 log.error("通过用户名查询用户异常:{}", username, throwable);
-                return new User();
+                return new LoginAppUser();
             }
         };
     }

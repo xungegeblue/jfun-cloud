@@ -12,4 +12,7 @@
         </foreach>
         )
     </select>
+    <select id="getMenuByRole" resultType="com.central.common.model.Menu">
+        SELECT * FROM sys_menu WHERE sys_menu.id IN ( SELECT menu_id as id FROM sys_roles_menus rm WHERE rm.role_id =#{roleId})
+    </select>
 </mapper>

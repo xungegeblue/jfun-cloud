@@ -11,5 +11,8 @@ spring:
         prefix: zuul-center
       discovery:
         server-addr: ${jfun.nacos-addr}
+zuul:
+  debug:
+    request: true
 jfun:
   nacos-addr: 127.0.0.1:8848

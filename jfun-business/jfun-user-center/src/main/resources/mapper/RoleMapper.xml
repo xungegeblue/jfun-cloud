@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.central.user.dao.RoleMapper">
+
+
+    <insert id="andRelationPermissions">
+        insert into sys_role_permission values
+        <foreach collection="menuIds"
+                 item="menuId"  separator=",">
+            (#{roleId},#{menuId})
+        </foreach>
+    </insert>
+    <insert id="andRelationMenus">
+        insert into sys_user_role values
+        <foreach collection="permissionIds"
+                 item="permissionId"  separator=",">
+            (#{roleId},#{permissionId})
+        </foreach>
+    </insert>
+
+
+    <select id="selectRolesPage" resultMap="role">
+        select * from sys_role where 1=1
+        <if test="role.name!=null">
+            and sys_role.name like concat('%',#{role.name},'%')
+        </if>
+    </select>
+    <resultMap id="role" type="com.central.common.model.Role">
+        <id property="id" column="id"/>
+        <association property="permissions" column="id" select="com.central.user.dao.PermissionMapper.findByRoleId"/>
+        <association property="menus" column="id" select="com.central.user.dao.MenuMapper.findByRoleId"/>
+    </resultMap>
+
+
+</mapper>

@@ -8,6 +8,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -26,7 +27,7 @@ public class User implements Serializable {
     private Integer state;//用户状态 --等待验证的用户 , 1:正常状态,2：用户被锁定.
 
     @TableField(exist = false)
-    private Set<Role> roles;// 一个用户具有多个角色
+    private List<Role> roles;// 一个用户具有多个角色
 
 
 

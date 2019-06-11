@@ -1,6 +1,8 @@
 package com.central.common.feign;
 
 import com.central.common.constant.ServiceNameContant;
+import com.central.common.model.User;
+import com.central.common.vo.LoginAppUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @Description:
  */
 @FeignClient(name = ServiceNameContant.USER_CENTER)
-public interface UserService {
+public interface AppUserService {
 
-    @GetMapping("user")
-    public Object findByUsername(@RequestParam("username") String username);
+    @GetMapping("findByUsername")
+    public LoginAppUser findByUsername(@RequestParam("username") String username);
 }

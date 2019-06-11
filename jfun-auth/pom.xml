@@ -16,10 +16,9 @@
         <groupId>cn.xiejx</groupId>
         <artifactId>jfun-cloud</artifactId>
         <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <dependencies>
 
-    </dependencies>
 
 </project>

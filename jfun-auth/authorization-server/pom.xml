@@ -6,7 +6,6 @@
         <groupId>cn.xiejx</groupId>
         <artifactId>jfun-auth</artifactId>
         <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
 
 
@@ -14,31 +13,21 @@
     <artifactId>authorization-server</artifactId>
     <version>1.0</version>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Finchley.SR3</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.0.9.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
 
     <dependencies>
         <!--boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-security</artifactId>
+            <version>${social.version}</version>
         </dependency>
         <!--读取文件配置-->
         <dependency>
@@ -55,7 +44,6 @@
         <dependency>
             <groupId>cn.xiejx</groupId>
             <artifactId>jfun-common-springboot-starter</artifactId>
-            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>com.github.axet</groupId>

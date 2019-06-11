@@ -1,7 +1,9 @@
 package com.central.oauth2.service;
 
-import com.central.common.feign.UserService;
+import com.central.common.feign.AppUserService;
 import com.central.common.model.Role;
+import com.central.common.vo.LoginAppUser;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.userdetails.User;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
  * @Author 谢镜勋
  * @Date 2019/4/23
  */
+
 @Service("userDetailsService")
 @Slf4j
 public class SQLUserDetailsService implements UserDetailsService {
@@ -31,27 +34,18 @@ public class SQLUserDetailsService implements UserDetailsService {
 
 
     @Resource
-    UserService userService;
+    AppUserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
         //String user =  restTemplate.getForObject("http://user-center/user?username="+name , String.class);
-        Object obj = userService.findByUsername(name);
-        Gson gson = new Gson();
-        String userJson = gson.toJson(obj);
-        com.central.common.model.User user = gson.fromJson(userJson, com.central.common.model.User.class);
-        User authUser = new User(user.getName(), user.getPassword(), getGrantedAuthorityByRole(user.getRoles()));
-        log.info(authUser.toString());
-
-        return authUser;
+        LoginAppUser loginAppUser = userService.findByUsername(name);
+        if (loginAppUser == null) {
+            throw new InternalAuthenticationServiceException("用户名或密码错误");
+        }
+        return loginAppUser;
     }
 
-    private List<GrantedAuthority> getGrantedAuthorityByRole(Set<Role> roles) {
-        return roles.stream()
-                .map(role -> role.getPermissions())
-                .flatMap(Collection::stream)
-                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
-                .collect(Collectors.toList());
-    }
+
 
 }

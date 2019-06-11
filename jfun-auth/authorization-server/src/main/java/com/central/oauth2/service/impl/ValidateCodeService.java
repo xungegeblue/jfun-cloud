@@ -2,7 +2,7 @@ package com.central.oauth2.service.impl;
 
 import cn.hutool.core.util.RandomUtil;
 import com.central.common.constant.SecurityConstants;
-import com.central.common.feign.UserService;
+import com.central.common.feign.AppUserService;
 import com.central.common.model.Result;
 import com.central.common.redis.template.RedisRepository;
 import com.central.oauth2.exection.ValidateCodeException;
@@ -31,7 +31,7 @@ public class ValidateCodeService implements IValidateCodeService {
     private RedisRepository redisRepository;
 
     @Resource
-    UserService userService;
+    AppUserService userService;
 
     @Override
     public void saveImageCode(String deviceId, String imageCode) {

@@ -6,6 +6,7 @@
         <artifactId>jfun-cloud</artifactId>
         <groupId>cn.xiejx</groupId>
         <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <version>1.0</version>
@@ -14,6 +15,7 @@
     <modules>
         <module>jfun-common-springboot-starter</module>
         <module>jfun-common-redis-starter</module>
+        <module>jfun-common-db-start</module>
     </modules>
 
  </project>

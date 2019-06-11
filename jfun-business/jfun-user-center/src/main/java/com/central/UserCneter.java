@@ -1,8 +1,11 @@
 package com.central;
 
+import com.central.common.annotation.EnableLoginArgResolver;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @Auther: miv
@@ -11,6 +14,8 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Email: 787824374@qq.com
  * @Description:
  */
+@EnableFeignClients
+@EnableLoginArgResolver
 @EnableDiscoveryClient
 @SpringBootApplication
 public class UserCneter {

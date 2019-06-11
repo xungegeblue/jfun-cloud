@@ -14,9 +14,9 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Result<T> implements Serializable {
 
-    private T datas;
-    private Integer resp_code;
-    private String resp_msg;
+    private T data;
+    private Integer status;
+    private String msg;
 
     public static <T> Result<T> succeed(String msg) {
         return succeedWith(null, CodeEnum.SUCCESS.getCode(), msg);
