@@ -138,6 +138,21 @@
                 <version>1.0</version>
             </dependency>
             <dependency>
+                <groupId>cn.xiejx</groupId>
+                <artifactId>jfun-common-db-start</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xiejx</groupId>
+                <artifactId>jfun-common-resource-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>cn.xiejx</groupId>
+                <artifactId>jfun-db-springboot-starter</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot-dependencies.version}</version>

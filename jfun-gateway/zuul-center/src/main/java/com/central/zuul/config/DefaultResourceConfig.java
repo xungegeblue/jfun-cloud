@@ -16,8 +16,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.web.cors.CorsUtils;
+
+import javax.sql.DataSource;
 
 /**
  * @Auther: miv
@@ -44,14 +48,24 @@ public class DefaultResourceConfig extends ResourceServerConfigurerAdapter {
     }
     @Autowired
     AuthExceptionEntryPoint authExceptionEntryPoint;
+
     @Autowired
     CustomAccessDeniedHandler customAccessDeniedHandler;
 
+    @Autowired
+    DataSource dataSource;
+    @Bean
+    public TokenStore tokenStore() {
+        return new JdbcTokenStore(dataSource);
+    }
+
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
-        resources.stateless(true).resourceId("order");
-        resources.authenticationEntryPoint(authExceptionEntryPoint)
+        resources.stateless(true)
+                .tokenStore(tokenStore())
+                .authenticationEntryPoint(authExceptionEntryPoint)
                 .accessDeniedHandler(customAccessDeniedHandler);
+
     }
 
 }

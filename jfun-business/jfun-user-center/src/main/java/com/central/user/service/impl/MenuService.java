@@ -16,6 +16,7 @@ import com.central.user.dao.MenuMapper;
 import com.central.user.dao.RoleMapper;
 import com.central.user.dao.UserMapper;
 import com.central.user.service.IMenuService;
+import com.central.user.vo.MenuTreeItem;
 import com.central.user.vo.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,6 @@ import java.util.stream.Collectors;
 @Service
 public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 
-
     @Override
     public List<MenuDTO> findByRoleCodes(Set<String> roleCodes) {
         List<Menu> menus = baseMapper.findByRoleCodes(roleCodes);
@@ -50,7 +50,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
     public IPage<Role> selectMenus(Page page, Role resource) {
 
         QueryWrapper wrapper = new QueryWrapper();
-        wrapper.eq(!StringUtils.isEmpty(resource.getName()), "name", resource.getName());
+        wrapper.eq(!StringUtils.isEmpty(resource.getName()), "label", resource.getName());
         return buildTree(baseMapper.selectPage(page, wrapper));
     }
 
@@ -75,6 +75,30 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
         List<MenuDTO> menus = getMenuByRole(menuDTOList);
         List<MenuDTO> menuDTOTree = (List<MenuDTO>) buildTree(menus).get("content");
         return buildMenus(menuDTOTree);
+    }
+
+    @Override
+    public List<MenuTreeItem> buildMenuTree(List<Menu> menus) {
+        List<MenuTreeItem> data = menus.stream().map
+                (menu -> new MenuTreeItem(menu.getId(), menu.getPid(), menu.getName())
+                ).collect(Collectors.toList());
+        List<MenuTreeItem> tree = new ArrayList<>();
+        for (MenuTreeItem m : data) {
+            if (m.getPid().equals(0L)) {
+                tree.add(m);
+            } else {
+                for (MenuTreeItem item : data) {
+                    if (m.getPid().equals(item.getId())) {
+                        if (item.getChildren() == null) {
+                            item.setChildren(new ArrayList<>());
+                            item.setHasChildren(true);
+                        }
+                        item.getChildren().add(m);
+                    }
+                }
+            }
+        }
+        return tree;
     }
 
     private List<MenuDTO> getMenuByRole(List<Role> roles) {
@@ -138,6 +162,14 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
     }
 
     public Map buildTree(List<MenuDTO> menuDTOS) {
+        //排序
+        menuDTOS = menuDTOS.stream().sorted(new Comparator<MenuDTO>() {
+            @Override
+            public int compare(MenuDTO o1, MenuDTO o2) {
+                return o1.getSort().intValue() - o2.getSort().intValue();
+            }
+        }).collect(Collectors.toList());
+
         List<MenuDTO> trees = new ArrayList<MenuDTO>();
 
         for (MenuDTO menuDTO : menuDTOS) {

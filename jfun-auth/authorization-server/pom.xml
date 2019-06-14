@@ -17,33 +17,28 @@
     <dependencies>
         <!--boot -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-springboot-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
-            <version>${social.version}</version>
-        </dependency>
-        <!--读取文件配置-->
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--页面要用到的框架-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <!--服务消费-->
+
+        <!--其他-->
         <dependency>
-            <groupId>cn.xiejx</groupId>
-            <artifactId>jfun-common-springboot-starter</artifactId>
+            <groupId>org.springframework.social</groupId>
+            <artifactId>spring-social-security</artifactId>
+            <version>${social.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.axet</groupId>
@@ -54,37 +49,16 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-security</artifactId>
         </dependency>
-
         <!--数据库-->
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatis.plus.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid-spring-boot-starter</artifactId>
-            <version>${druid.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.bgee.log4jdbc-log4j2</groupId>
-            <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
-            <version>1.16</version>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-db-springboot-starter</artifactId>
         </dependency>
         <!-- redis -->
         <dependency>
             <groupId>cn.xiejx</groupId>
             <artifactId>jfun-common-redis-starter</artifactId>
         </dependency>
-
         <!-- nacos -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>

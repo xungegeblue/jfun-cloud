@@ -38,7 +38,7 @@ public class SQLUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        //String user =  restTemplate.getForObject("http://user-center/user?username="+name , String.class);
+        //String user =  restTemplate.getForObject("http://user-center/user?username="+label , String.class);
         LoginAppUser loginAppUser = userService.findByUsername(name);
         if (loginAppUser == null) {
             throw new InternalAuthenticationServiceException("用户名或密码错误");

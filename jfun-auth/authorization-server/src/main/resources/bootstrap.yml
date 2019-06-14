@@ -21,3 +21,4 @@ spring:
     cache: false
 jfun:
   nacos-addr: 127.0.0.1:8848
+

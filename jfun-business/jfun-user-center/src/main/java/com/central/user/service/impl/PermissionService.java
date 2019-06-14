@@ -8,7 +8,9 @@ import com.central.user.dao.PermissionMapper;
 import com.central.common.model.Permission;
 import com.central.user.service.IPermissionService;
 import com.central.user.vo.Page;
+import com.central.user.vo.PermissionTreeItem;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Array;
@@ -20,6 +22,9 @@ import java.util.*;
  */
 @Service
 public class PermissionService extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
+
+
+
     public Set<Permission> findByRoleId(long rid) {
         return baseMapper.findByRoleId(rid);
     }
@@ -27,7 +32,7 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
     @Override
     public IPage<Permission> selectPermission(Page page, Permission resource) {
         QueryWrapper<Permission> wrapper = new QueryWrapper<>();
-        wrapper.like(StringUtils.isNotEmpty(resource.getName()), "name", resource.getName())
+        wrapper.like(StringUtils.isNotEmpty(resource.getName()), "label", resource.getName())
                 .or().like(StringUtils.isNotEmpty(resource.getAlias()), "alias", resource.getAlias());
         return buildTree(baseMapper.selectPage(page, wrapper));
     }
@@ -52,16 +57,38 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
     @Override
     public List<Permission> buildTree(List<Permission> records) {
         List<Permission> tree = new ArrayList<>();
-        for(Permission p:records){
-            if(p.getPid().equals(0L)){
+        for (Permission p : records) {
+            if (p.getPid().equals(0L)) {
                 tree.add(p);
-            }else{
-                for(Permission item: records){
-                    if(item.getPid().equals(p.getId())){
-                        if(p.getChildren()==null){
+            } else {
+                for (Permission item : records) {
+                    if (item.getPid().equals(p.getId())) {
+                        if (p.getChildren() == null) {
                             p.setChildren(new ArrayList<>());
                         }
                         p.getChildren().add(item);
+                    }
+                }
+            }
+        }
+        return tree;
+    }
+
+    @Override
+    public List<PermissionTreeItem> buildSelectTree(List<PermissionTreeItem> records) {
+        List<PermissionTreeItem> tree = new ArrayList<>();
+        for (PermissionTreeItem p : records) {
+            if (p.getPid().equals(0L)) {
+                tree.add(p);
+            } else { //p不是第一级别
+                for (PermissionTreeItem item : records) {
+                    if (p.getPid().equals(item.getId())) {
+                        if (item.getChildren() == null) {
+                            item.setHasChildren(true);
+                            item.setChildren(new ArrayList<>());
+                        }
+
+                        item.getChildren().add(p);
                     }
                 }
             }

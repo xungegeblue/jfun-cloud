@@ -5,7 +5,7 @@
     <select id="findByRoleCodes" resultType="com.central.common.model.Menu">
         select * from sys_menu where sys_menu.id in
         (
-        select menu_id  from sys_roles_menus where  role_id in
+        select menu_id  from sys_role_menu where  role_id in
         <foreach collection="roleCodes" index="index" item="roleCode"
                  open="(" separator="," close=")">
             #{roleCode}
@@ -13,6 +13,6 @@
         )
     </select>
     <select id="getMenuByRole" resultType="com.central.common.model.Menu">
-        SELECT * FROM sys_menu WHERE sys_menu.id IN ( SELECT menu_id as id FROM sys_roles_menus rm WHERE rm.role_id =#{roleId})
+        SELECT * FROM sys_menu WHERE sys_menu.id IN ( SELECT menu_id as id FROM sys_role_menu rm WHERE rm.role_id =#{roleId})
     </select>
 </mapper>

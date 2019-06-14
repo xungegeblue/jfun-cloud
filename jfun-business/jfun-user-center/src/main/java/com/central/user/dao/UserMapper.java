@@ -15,6 +15,10 @@ import java.util.List;
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
 
+    @Results({
+            @Result(id=true,column="id",property="id"),
+            @Result(column = "id", property = "roles", many = @Many(select = "com.central.user.dao.RoleMapper.findRoleListByUid"))
+    })
     @Select("select * from sys_user where name=#{name}")
     public User getByUsername(@Param("name") String name);
 

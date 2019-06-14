@@ -5,16 +5,16 @@
 
     <insert id="andRelationPermissions">
         insert into sys_role_permission values
-        <foreach collection="menuIds"
-                 item="menuId"  separator=",">
-            (#{roleId},#{menuId})
+        <foreach collection="permissionIds"
+                 item="permissionId" separator=",">
+            (#{permissionId},#{roleId})
         </foreach>
     </insert>
     <insert id="andRelationMenus">
-        insert into sys_user_role values
-        <foreach collection="permissionIds"
-                 item="permissionId"  separator=",">
-            (#{roleId},#{permissionId})
+        insert into sys_role_menu values
+        <foreach collection="menuIds"
+                 item="menuId" separator=",">
+            (#{roleId},#{menuId})
         </foreach>
     </insert>
 

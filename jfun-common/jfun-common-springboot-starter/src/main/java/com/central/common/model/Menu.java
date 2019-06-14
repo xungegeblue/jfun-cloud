@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ import java.util.Set;
  */
 @Data
 @TableName(value = "sys_menu")
-public class Menu {
+public class Menu implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private String name;

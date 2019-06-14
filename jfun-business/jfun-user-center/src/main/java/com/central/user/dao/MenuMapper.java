@@ -21,7 +21,7 @@ public interface MenuMapper extends BaseMapper<Menu> {
 
     List<Menu> findByRoleCodes(@Param("roleCodes") Set<String> roleCodes);
 
-    @Select(" SELECT * FROM sys_menu WHERE sys_menu.id IN ( SELECT menu_id as id FROM sys_roles_menus rm WHERE rm.role_id =#{roleId})")
+    @Select(" SELECT * FROM sys_menu WHERE sys_menu.id IN ( SELECT menu_id as id FROM sys_role_menu rm WHERE rm.role_id =#{roleId})")
     public List<Menu> findByRoleId(@Param("roleId") Long roleId);
 
     List<Menu> getMenuByRole(Long id);

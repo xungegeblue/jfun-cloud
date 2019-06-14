@@ -12,6 +12,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
+
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.FORM_BODY_WRAPPER_FILTER_ORDER;
 
 /**
@@ -39,6 +41,16 @@ public class UserInfoHeaderFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+        //向header中添加鉴权令牌
+//        RequestContext requestContext = RequestContext.getCurrentContext();
+        //获取header
+//        HttpServletRequest request = requestContext.getRequest();
+//        String authorization = request.getHeader("Authorization");
+//        if(authorization != null) {
+//            System.out.println("authorization: " + authorization);
+//            requestContext.addZuulRequestHeader("Authorization", authorization);
+//        }
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null && (authentication instanceof OAuth2Authentication)) {

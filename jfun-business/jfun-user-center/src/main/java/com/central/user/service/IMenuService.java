@@ -5,9 +5,11 @@ import com.central.common.dto.MenuDTO;
 import com.central.common.model.Menu;
 import com.central.common.model.Role;
 import com.central.common.model.User;
+import com.central.user.vo.MenuTreeItem;
 import com.central.user.vo.Page;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -25,4 +27,6 @@ public interface IMenuService {
     int del(Long id);
 
     Object buildUserMenus(User user);
+
+    List<MenuTreeItem> buildMenuTree(List<Menu> menus);
 }

@@ -1,17 +1,22 @@
 package com.central.user.rest;
 
+import cn.hutool.core.date.DateUtil;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.central.common.model.Permission;
 import com.central.common.model.User;
 import com.central.user.service.IPermissionService;
 import com.central.user.vo.Page;
+import com.central.user.vo.PermissionTreeItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @Auther: miv
@@ -36,6 +41,17 @@ public class PermissionController {
         return ResponseEntity.ok(iPage);
     }
 
+    //查询
+    @GetMapping(value = "/permission/tree")
+    public ResponseEntity tree() {
+        List<Permission> list = permissionService.list();
+        List<PermissionTreeItem> records = list.stream().map(p -> {
+            return new PermissionTreeItem(p.getId(), p.getAlias(), p.getPid());
+        }).collect(Collectors.toList());
+        List<PermissionTreeItem> o = permissionService.buildSelectTree(records);
+        return ResponseEntity.ok(o);
+    }
+
 
     //删除
     @DeleteMapping(value = "/permission/{id}")
@@ -54,6 +70,7 @@ public class PermissionController {
     //添加
     @PostMapping(value = "/permission")
     public ResponseEntity create(@Validated @RequestBody Permission resource) {
+        resource.setCreateTime(DateUtil.date().toTimestamp());
         permissionService.save(resource);
         return ResponseEntity.ok(HttpStatus.OK);
     }

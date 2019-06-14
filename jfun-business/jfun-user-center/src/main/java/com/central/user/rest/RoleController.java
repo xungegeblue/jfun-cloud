@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
@@ -36,6 +37,12 @@ public class RoleController {
         return ResponseEntity.ok(iPage);
     }
 
+    @GetMapping("/role/{id}")
+    public ResponseEntity getRole(@PathVariable Long id) {
+        Role role = roleService.findRoleByUid(id);
+        return new ResponseEntity(role, HttpStatus.OK);
+    }
+
     @GetMapping(value = "/roleList")
     public ResponseEntity roleList() {
         Object o = roleService.list().stream().map(role -> {
@@ -51,27 +58,40 @@ public class RoleController {
     @DeleteMapping(value = "/role/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         roleService.del(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
     //修改角色对应的菜单和权限
     @PutMapping(value = "/role/{id}")
     public ResponseEntity editMenuAndPermsssion(@PathVariable Long id, @Validated @RequestBody Role resource) {
-        roleService.update(id, resource.getMenus(), resource.getPermissions());
-        return ResponseEntity.ok(HttpStatus.OK);
+        //roleService.update(id, resource.getMenus(), resource.getPermissions());
+        roleService.update(resource);
+        return ResponseEntity.ok().build();
     }
 
     //修改角色
     @PutMapping(value = "/role")
-    public ResponseEntity edit(Role resource) {
+    public ResponseEntity edit(@RequestBody Role resource) {
         roleService.update(resource);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
     //添加角色
     @PostMapping(value = "/role")
     public ResponseEntity create(@Validated @RequestBody Role resource) {
         roleService.create(resource);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/role/permission")
+    public ResponseEntity permission(@RequestBody Role resources) {
+        roleService.updatePermission(resources);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/role/menu")
+    public ResponseEntity menu(@RequestBody Role resource) {
+        roleService.updateMenu(resource);
+        return ResponseEntity.ok().build();
     }
 }

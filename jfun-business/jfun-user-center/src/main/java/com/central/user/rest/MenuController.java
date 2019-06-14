@@ -11,6 +11,7 @@ import com.central.common.util.Trans2Entity;
 import com.central.common.vo.MenuVo;
 import com.central.user.service.IUserService;
 import com.central.user.service.impl.MenuService;
+import com.central.user.vo.MenuTreeItem;
 import com.central.user.vo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -60,32 +63,39 @@ public class MenuController {
 
     //查询
     @GetMapping
-    public ResponseEntity user(Page page, Role resource) {
+    public ResponseEntity find(Page page, Role resource) {
         IPage<Role> iPage = menuService.selectMenus(page, resource);
         return ResponseEntity.ok(iPage);
     }
 
+    @GetMapping("tree")
+    public ResponseEntity tree() {
+        List<Menu> menus = menuService.list();
+        List<MenuTreeItem> tree = menuService.buildMenuTree(menus);
+        return ResponseEntity.ok(tree);
+    }
 
-    //删除角色
+
+    //删除
     @DeleteMapping(value = "/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         menuService.del(id);
-        return new ResponseEntity(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
 
-    //修改角色
+    //修改
     @PutMapping
-    public ResponseEntity edit(Menu resource) {
+    public ResponseEntity edit(@RequestBody Menu resource) {
         menuService.updateById(resource);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
-    //添加角色
+    //添加
     @PostMapping
     public ResponseEntity create(@Validated @RequestBody Menu resource) {
         menuService.save(resource);
-        return ResponseEntity.ok(HttpStatus.OK);
+        return ResponseEntity.ok().build();
     }
 
 }

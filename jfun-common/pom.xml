@@ -16,6 +16,7 @@
         <module>jfun-common-springboot-starter</module>
         <module>jfun-common-redis-starter</module>
         <module>jfun-common-db-start</module>
+        <module>jfun-common-resource-starter</module>
     </modules>
 
  </project>

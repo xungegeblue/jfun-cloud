@@ -9,6 +9,7 @@ import com.central.common.model.Role;
 import com.central.common.vo.LoginAppUser;
 import com.central.user.dao.UserMapper;
 import com.central.common.model.User;
+import com.central.user.service.IRoleService;
 import com.central.user.service.IUserService;
 import com.central.user.vo.Page;
 import org.springframework.beans.BeanUtils;
@@ -31,7 +32,8 @@ import java.util.stream.Collectors;
 @Service
 public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
 
-
+    @Autowired
+    IRoleService roleService;
     public User getByUsername(String userName) {
         return baseMapper.getByUsername(userName);
     }

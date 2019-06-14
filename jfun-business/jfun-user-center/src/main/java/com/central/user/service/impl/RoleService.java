@@ -24,8 +24,15 @@ import java.util.stream.Collectors;
 @Service
 public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
-    public List<Role> findRoleByUid(Long uid) {
-        return baseMapper.findRoleByUid(uid);
+
+    @Override
+    public Role findRoleByUid(Long rid) {
+        return baseMapper.findRoleByUid(rid);
+    }
+
+    @Override
+    public List<Role> findRoleListByUid(Long uid) {
+        return baseMapper.findRoleListByUid(uid);
     }
 
     @Override
@@ -56,19 +63,24 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
         return baseMapper.updateById(resource);
     }
 
-    @Override
-    public int update(Long id, Set<Menu> menus, Set<Permission> permissions) {
-        List<Long> menuIds = menus.stream().map(s -> s.getId()).distinct().collect(Collectors.toList());
-        List<Long> permissionIds = permissions.stream().map(s -> s.getId()).distinct().collect(Collectors.toList());
-
-        int i = baseMapper.andRelationPermissions(id, menuIds);
-        int j = baseMapper.andRelationMenus(id, permissionIds);
-        return i + j;
-    }
 
     @Override
     public Role create(Role resource) {
         baseMapper.insert(resource);
         return resource;
+    }
+
+    @Override
+    public void updatePermission(Role resources) {
+        List<Long> permissionIds = resources.getPermissions().stream().map(s -> s.getId()).distinct().collect(Collectors.toList());
+        baseMapper.delRelationPermissions(resources.getId());
+        baseMapper.andRelationPermissions(resources.getId(), permissionIds);
+    }
+
+    @Override
+    public void updateMenu(Role resource) {
+        List<Long> menuIds = resource.getMenus().stream().map(s -> s.getId()).distinct().collect(Collectors.toList());
+        baseMapper.delRelationMenus(resource.getId());
+        baseMapper.andRelationMenus(resource.getId(), menuIds);
     }
 }

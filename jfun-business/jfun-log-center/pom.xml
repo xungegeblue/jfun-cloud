@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>jfun-business</artifactId>
+        <groupId>cn.xiejx</groupId>
+        <version>1.0</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>jfun-log-center</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-resource-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-db-start</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-springboot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>${nacos-config-spring-boot.version}</version>
+        </dependency>
+    </dependencies>
+</project>

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.central.common.model.Permission;
 import com.central.user.vo.Page;
+import com.central.user.vo.PermissionTreeItem;
 
 import java.util.List;
 import java.util.Map;
@@ -21,4 +22,6 @@ public interface IPermissionService extends IService<Permission> {
     int del(Long id);
 
     List<Permission> buildTree(List<Permission> records);
+
+    List<PermissionTreeItem> buildSelectTree(List<PermissionTreeItem> list);
 }

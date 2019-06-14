@@ -40,8 +40,6 @@ public class UserController {
     @GetMapping("findByUsername")
     public LoginAppUser findByUsername(String username){
        User user = userService.getByUsername(username);
-       List<Role> roleSet = roleService.findRoleByUid(user.getId());
-       user.setRoles(roleSet);
        LoginAppUser loginAppUser = userService.getLoginAppUser(user);
        return loginAppUser;
     }

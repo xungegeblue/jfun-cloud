@@ -61,8 +61,8 @@ CREATE TABLE `gateway_routes` (
 -- Records of gateway_routes
 -- ----------------------------
 BEGIN;
-INSERT INTO `gateway_routes` VALUES (101, 'authorization-server', 'lb://authorization-server:8000', '[{\"name\":\"Path\",\"args\":{\"pattern\":\"/authorization-server/**\"}}]', '[{\"name\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]', 100, '授权认证服务网关注册', 'Y', '2019-05-03 11:28:15', '2019-05-03 11:28:15', 'system', 'system');
-INSERT INTO `gateway_routes` VALUES (102, 'authentication-server', 'lb://authentication-server:8001', '[{\"name\":\"Path\",\"args\":{\"pattern\":\"/authentication-server/**\"}}]', '[{\"name\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]', 100, '签权服务网关注册', 'Y', '2019-05-03 11:28:15', '2019-05-03 11:28:15', 'system', 'system');
+INSERT INTO `gateway_routes` VALUES (101, 'authorization-server', 'lb://authorization-server:8000', '[{\"label\":\"Path\",\"args\":{\"pattern\":\"/authorization-server/**\"}}]', '[{\"label\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]', 100, '授权认证服务网关注册', 'Y', '2019-05-03 11:28:15', '2019-05-03 11:28:15', 'system', 'system');
+INSERT INTO `gateway_routes` VALUES (102, 'authentication-server', 'lb://authentication-server:8001', '[{\"label\":\"Path\",\"args\":{\"pattern\":\"/authentication-server/**\"}}]', '[{\"label\":\"StripPrefix\",\"args\":{\"parts\":\"1\"}}]', 100, '签权服务网关注册', 'Y', '2019-05-03 11:28:15', '2019-05-03 11:28:15', 'system', 'system');
 COMMIT;
 
 -- ----------------------------
@@ -116,7 +116,7 @@ CREATE TABLE `oauth_client_details` (
 -- Records of oauth_client_details
 -- ----------------------------
 BEGIN;
-INSERT INTO `oauth_client_details` VALUES ('client_1', 'order', '123456', 'select', 'password', '', 'test', NULL, NULL, '{}', '');
+INSERT INTO `oauth_client_details` VALUES ('client_1', '', '123456', 'select', 'password', '', 'test', NULL, NULL, '{}', '');
 COMMIT;
 
 -- ----------------------------

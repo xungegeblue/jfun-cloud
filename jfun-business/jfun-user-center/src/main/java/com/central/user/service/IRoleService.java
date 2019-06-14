@@ -15,15 +15,19 @@ import java.util.Set;
  * @Date 2019/4/23
  */
 public interface IRoleService extends IService<Role> {
-    List<Role> findRoleByUid(Long uid);
+    Role findRoleByUid(Long rid);
+
+    List<Role> findRoleListByUid(Long uid);
 
     IPage<Role> selectRoles(Page page, Role resource);
 
     int del(Long id);
 
     int update(Role resource);
-
-    int update(Long id, Set<Menu> menus, Set<Permission> permissions);
-
+    
     Role create(Role resource);
+
+    void updatePermission(Role resources);
+
+    void updateMenu(Role resource);
 }

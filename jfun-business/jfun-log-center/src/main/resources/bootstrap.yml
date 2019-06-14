@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: LOG-CENTER
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${jfun.nacos-addr}
+jfun:
+  nacos-addr: 127.0.0.1:8848

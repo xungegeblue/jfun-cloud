@@ -20,28 +20,37 @@ import java.util.Set;
 public interface RoleMapper extends BaseMapper<Role> {
 
     @Results({
-            @Result(id=true,column="id",property="id"),
-            @Result(column = "id", property = "permissions", many = @Many(select = "com.central.user.dao.PermissionMapper.findByRoleId"))
+            @Result(id = true, column = "id", property = "id"),
+            @Result(column = "id", property = "permissions", many = @Many(select = "com.central.user.dao.PermissionMapper.findByRoleId")),
+            @Result(column = "id", property = "menus", many = @Many(select = "com.central.user.dao.MenuMapper.findByRoleId"))
     })
     @Select("select * from sys_role where id in(select role_id as  id from sys_user_role where uid=#{uid})")
-    List<Role> findRoleByUid(@Param("uid") Long uid);
+    List<Role> findRoleListByUid(@Param("uid") Long uid);
+
+    @Results({
+            @Result(id = true, column = "id", property = "id"),
+            @Result(column = "id", property = "permissions", many = @Many(select = "com.central.user.dao.PermissionMapper.findByRoleId")),
+            @Result(column = "id", property = "menus", many = @Many(select = "com.central.user.dao.MenuMapper.findByRoleId"))
+    })
+    @Select("select * from sys_role where id in(select role_id as  id from sys_user_role where role_id=#{rid})")
+    Role findRoleByUid(@Param("rid") Long rid);
 
 
     @ResultType(value = java.lang.Integer.class)
     @Select({"select count(1) from sys_user_role where role_id=#{roleId}"})
     int selectBinds(@Param("roleId") Long roleId);
 
-    @Delete("delete sys_role_permission where role_id=#{roleId}")
+    @Delete("delete from sys_role_permission where role_id=#{roleId}")
     void delRelationPermissions(@Param("roleId") Long roleId);
 
-    @Delete("delete sys_roles_menu where role_id=#{roleId}")
+    @Delete("delete from sys_role_menu where role_id=#{roleId}")
     void delRelationMenus(@Param("roleId") Long roleId);
 
 
-    int andRelationPermissions(@Param("roleId")Long roleId,@Param("menuIds") List<Long> menuIds);
+    int andRelationPermissions(@Param("roleId") Long roleId, @Param("permissionIds") List<Long> permissionIds);
 
 
-    int andRelationMenus(@Param("roleId")Long roleId, @Param("permissionIds")List<Long> permissionIds);
+    int andRelationMenus(@Param("roleId") Long roleId, @Param("menuIds") List<Long> menuIds);
 
 
     IPage<Role> selectRolesPage(Page page, @Param(value = "role") Role role);
