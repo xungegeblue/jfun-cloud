@@ -1,18 +1,21 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
+  security:
+    user:
+      password: jfun
+      name: jfun
   profiles:
     active: dev
   application:
-    name: USER-CENTER
+    name: MONITOR-ADMIN
   cloud:
     nacos:
       config:
         server-addr: ${jfun.nacos-addr}
         file-extension: yml
-        prefix: user-center
+        prefix: monitor-admin
       discovery:
         server-addr: ${jfun.nacos-addr}
 jfun:
   nacos-addr: 127.0.0.1:8848
+
 

@@ -177,13 +177,13 @@ INSERT INTO `sys_menu` VALUES (2, '2018-12-18 15:14:44', b'0', '用户管理', '
 INSERT INTO `sys_menu` VALUES (3, '2018-12-18 15:16:07', b'0', '角色管理', 'system/role/index', 1, 3, 'role', 'role');
 INSERT INTO `sys_menu` VALUES (4, '2018-12-18 15:16:45', b'0', '权限管理', 'system/permission/index', 1, 4, 'permission', 'permission');
 INSERT INTO `sys_menu` VALUES (5, '2018-12-18 15:17:28', b'0', '菜单管理', 'system/menu/index', 1, 5, 'menu', 'menu');
-INSERT INTO `sys_menu` VALUES (6, '2018-12-18 15:17:48', b'0', '系统监控', NULL, 0, 10, 'monitor', 'monitor');
-INSERT INTO `sys_menu` VALUES (7, '2018-12-18 15:18:26', b'0', '操作日志', 'monitor/log/index', 6, 11, 'log', 'logs');
-INSERT INTO `sys_menu` VALUES (8, '2018-12-18 15:19:01', b'0', '系统缓存', 'monitor/redis/index', 6, 13, 'redis', 'redis');
+INSERT INTO `sys_menu` VALUES (6, '2018-12-18 15:17:48', b'0', '系统监控', NULL, 0, 10, 'monitorAdmin', 'monitorAdmin');
+INSERT INTO `sys_menu` VALUES (7, '2018-12-18 15:18:26', b'0', '操作日志', 'monitorAdmin/log/index', 6, 11, 'log', 'logs');
+INSERT INTO `sys_menu` VALUES (8, '2018-12-18 15:19:01', b'0', '系统缓存', 'monitorAdmin/redis/index', 6, 13, 'redis', 'redis');
 INSERT INTO `sys_menu` VALUES (9, '2018-12-18 15:19:34', b'1', 'SQL监控', NULL, 6, 14, 'sqlMonitor', 'http://api.auauz.net/druid');
 INSERT INTO `sys_menu` VALUES (10, '2018-12-19 13:38:16', b'0', '组件管理', NULL, 0, 50, 'zujian', 'components');
 INSERT INTO `sys_menu` VALUES (11, '2018-12-19 13:38:49', b'0', '图标库', 'components/IconSelect', 10, 51, 'icon', 'icon');
-INSERT INTO `sys_menu` VALUES (12, '2018-12-24 20:37:35', b'0', '实时控制台', 'monitor/log/msg', 6, 15, 'codeConsole', 'msg');
+INSERT INTO `sys_menu` VALUES (12, '2018-12-24 20:37:35', b'0', '实时控制台', 'monitorAdmin/log/msg', 6, 15, 'codeConsole', 'msg');
 INSERT INTO `sys_menu` VALUES (13, '2018-12-27 10:11:26', b'0', '三方工具', '', 0, 30, 'tools', 'tools');
 INSERT INTO `sys_menu` VALUES (14, '2018-12-27 10:13:09', b'0', '邮件工具', 'tools/email/index', 13, 31, 'email', 'email');
 INSERT INTO `sys_menu` VALUES (15, '2018-12-27 11:58:25', b'0', '富文本', 'components/Editor', 10, 52, 'fwb', 'tinymce');
@@ -198,7 +198,7 @@ INSERT INTO `sys_menu` VALUES (24, '2019-01-04 16:24:48', b'0', '三级菜单1',
 INSERT INTO `sys_menu` VALUES (27, '2019-01-07 17:27:32', b'0', '三级菜单2', 'nested/menu1/menu1-2', 22, 999, 'menu', 'menu1-2');
 INSERT INTO `sys_menu` VALUES (28, '2019-01-07 20:34:40', b'0', '定时任务', 'system/timing/index', 1, 6, 'timing', 'timing');
 INSERT INTO `sys_menu` VALUES (30, '2019-01-11 15:45:55', b'0', '代码生成', 'generator/index', 1, 8, 'dev', 'generator');
-INSERT INTO `sys_menu` VALUES (32, '2019-01-13 13:49:03', b'0', '异常日志', 'monitor/log/errorLog', 6, 12, 'error', 'errorLog');
+INSERT INTO `sys_menu` VALUES (32, '2019-01-13 13:49:03', b'0', '异常日志', 'monitorAdmin/log/errorLog', 6, 12, 'error', 'errorLog');
 COMMIT;
 
 -- ----------------------------

@@ -1,15 +1,18 @@
 package com.central.oauth2.config;
 
+import com.central.common.config.PermitUrlProperties;
 import com.central.common.constant.SecurityConstants;
 import com.central.oauth2.constants.FromLoginConstant;
 import com.central.oauth2.properties.SecurityProperties;
 import com.central.oauth2.service.SQLUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -29,8 +32,12 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
  */
 @Configuration
 @EnableWebSecurity
+@EnableConfigurationProperties(PermitUrlProperties.class)
+
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private PermitUrlProperties permitUrlProperties;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -62,5 +69,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(permitUrlProperties.getIgnored());
     }
 }

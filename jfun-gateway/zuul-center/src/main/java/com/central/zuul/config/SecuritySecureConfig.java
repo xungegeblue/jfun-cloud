@@ -1,30 +1,31 @@
-package com.central.user.config;
+package com.central.zuul.config;
+
 import com.central.common.config.PermitUrlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 /**
  * @Auther: miv
- * @Date: 2019-06-14 16:06
+ * @Date: 2019-06-15 07:35
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
  * @Description:
  */
+@Configuration
 @EnableConfigurationProperties(PermitUrlProperties.class)
-@EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecuritySecureConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private PermitUrlProperties permitUrlProperties;
 
-
     @Override
     public void configure(WebSecurity web) throws Exception {
-        //ignore
-        web.ignoring().antMatchers("/findByUsername"); //给认证服务器使用，不对外开放
         web.ignoring().antMatchers(permitUrlProperties.getIgnored());
     }
 

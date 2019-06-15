@@ -3,41 +3,46 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
+        <artifactId>jfun-monitor</artifactId>
         <groupId>cn.xiejx</groupId>
-        <artifactId>jfun-business</artifactId>
         <version>1.0</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <version>1.0</version>
-    <artifactId>jfun-user-center</artifactId>
 
+    <artifactId>jfun-monitor-admin</artifactId>
 
     <dependencies>
-        <!-- boot-->
+        <dependency>
+            <groupId>de.codecentric</groupId>
+            <artifactId>spring-boot-admin-starter-server</artifactId>
+        </dependency>
         <dependency>
             <groupId>cn.xiejx</groupId>
             <artifactId>jfun-common-springboot-starter</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <!--数据库-->
-        <dependency>
-            <groupId>cn.xiejx</groupId>
-            <artifactId>jfun-db-springboot-starter</artifactId>
-        </dependency>
-        <!--作为资源服务-->
-        <dependency>
-            <groupId>cn.xiejx</groupId>
-            <artifactId>jfun-common-resource-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>cn.xiejx</groupId>
+                    <artifactId>jfun-db-springboot-starter</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-        <!--其他 -->
         <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+       
+        <dependency>
+            <groupId>org.jolokia</groupId>
+            <artifactId>jolokia-core</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-security</artifactId>
         </dependency>
         <!--nacos 配置中心https://www.jianshu.com/p/3750b7be331f-->
         <dependency>
@@ -49,8 +54,5 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
-
-
     </dependencies>
-
 </project>

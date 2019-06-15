@@ -14,6 +14,7 @@
         <module>jfun-business</module>
         <module>jfun-common</module>
         <module>jfun-web</module>
+        <module>jfun-monitor</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -42,6 +43,7 @@
         <jwt.version>1.0.10.RELEASE</jwt.version>
         <jfun.cloud.version>1.0</jfun.cloud.version>
         <social.version>1.1.6.RELEASE</social.version>
+        <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
     </properties>
 
 
@@ -82,6 +84,11 @@
     <dependencyManagement>
 
         <dependencies>
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.springframework.security.oauth</groupId>
                 <artifactId>spring-security-oauth2</artifactId>
