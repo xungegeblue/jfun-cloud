@@ -43,7 +43,7 @@ public class RoleController {
         return new ResponseEntity(role, HttpStatus.OK);
     }
 
-    @GetMapping(value = "/roleList")
+    @GetMapping(value = "/role/roleList")
     public ResponseEntity roleList() {
         Object o = roleService.list().stream().map(role -> {
             JSONObject jsonObject = new JSONObject();

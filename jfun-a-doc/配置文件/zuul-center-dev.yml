@@ -1,6 +1,9 @@
 spring:
-  main:
-    allow-bean-definition-overriding: true
+  application:
+    name: zuul-center
+  redis:
+    host: 127.0.0.1
+    port: 6379
   datasource:
     druid:
       type: com.alibaba.druid.pool.DruidDataSource
@@ -39,32 +42,17 @@ spring:
       web-stat-filter:
         url-pattern: /*
         exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
-  #热部署生效
-  devtools:
-    restart:
-      enabled: true
-      additional-paths: src/main/java
-      exclude: WEB-INF/**
-
-  redis:
-    #数据库索引
-    database: 0
-    host: 127.0.0.1
-    port: 6379
-
+security:
+  oauth2:
+    client:
+      client-id: client_1
+      client-secret: 123456
+      access-token-uri: http://localhost:9004/oauth/token
+      user-authorization-uri: http://localhost:9004/oauth/authorize
+    resource:
+      token-info-uri: http://localhost:9004/oauth/check_token
 server:
-  tomcat:
-    uri-encoding: UTF-8
-  port: 9002
-
-mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: jfun.entity
-pagehelper:
-  helper-dialect: mysql
-  params: count=countSql
-  reasonable: true
-  support-methods-arguments: true
+  port: 9005
 management:
   endpoints:
     web:
@@ -73,3 +61,19 @@ management:
   endpoint:
     health:
       show-details: always
+zuul:
+  routes:
+    bd1:
+      path: /bd1
+      url: http://www.baidu.com/
+    bd:
+      url: http://www.baidu.com/
+    user-center:
+      path: /api-user/**
+      service-id: USER-CENTER
+      strip-prefix: true
+      sensitiveHeaders:
+    auth-server:
+      path: /api-auth/**
+      service-id: AUTHORIZATION-SREVER
+      strip-prefix: true

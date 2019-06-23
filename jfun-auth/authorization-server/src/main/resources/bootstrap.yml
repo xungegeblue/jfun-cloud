@@ -16,9 +16,8 @@ spring:
   redis:
     host: 127.0.0.1
     port: 6379
-  thymeleaf:
-    suffix: .html
-    cache: false
 jfun:
   nacos-addr: 127.0.0.1:8848
+#  tokenStoreType : reids/jdbc/jwt
+  tokenStoreType: redis
 

@@ -33,8 +33,8 @@ public class UserController {
     IRoleService roleService;
 
     @GetMapping("/user/info")
-    public ResponseEntity info(@LoginUser(isFull = true) User user){
-        return ResponseEntity.ok(user);
+    public User info(@LoginUser(isFull = true) User user){
+        return user;
     }
 
     @GetMapping("findByUsername")

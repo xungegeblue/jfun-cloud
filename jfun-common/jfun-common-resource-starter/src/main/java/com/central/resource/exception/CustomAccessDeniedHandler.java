@@ -1,9 +1,5 @@
-package com.central.zuul.exection;
+package com.central.resource.exception;
 
-import cn.hutool.json.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.central.common.model.Result;
-import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

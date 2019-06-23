@@ -35,33 +35,22 @@
 
         <!-- Spring Security -->
         <dependency>
-            <groupId>org.springframework.security.oauth</groupId>
-            <artifactId>spring-security-oauth2</artifactId>
+            <groupId>cn.xiejx</groupId>
+            <artifactId>jfun-common-resource-starter</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.social</groupId>
-            <artifactId>spring-social-security</artifactId>
-        </dependency>
-        <!-- db -->
         <dependency>
             <groupId>cn.xiejx</groupId>
-            <artifactId>jfun-db-springboot-starter</artifactId>
+            <artifactId>jfun-common-redis-starter</artifactId>
         </dependency>
         <!-- zuul-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
         </dependency>
-        <!-- 监控-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-redis</artifactId>
-        </dependency>
-
        <!-- boot-->
         <dependency>
             <groupId>cn.xiejx</groupId>
@@ -73,8 +62,16 @@
                 </exclusion>
             </exclusions>
         </dependency>
-
-
+        <!--限流熔断-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+            <version>1.5.2</version>
+        </dependency>
 
     </dependencies>
 

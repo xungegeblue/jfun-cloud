@@ -2,11 +2,13 @@ package com.central.user.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.central.common.model.Permission;
+import com.central.common.vo.Resource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -21,4 +23,6 @@ public interface PermissionMapper extends BaseMapper<Permission> {
 
     @Select("select count(1) from sys_role_permission where permission_id=#{pid}")
     int permissionBinds(@Param("pid") Long pid);
+
+
 }

@@ -1,4 +1,4 @@
-package com.central.zuul.exection;
+package com.central.resource.exception;
 
 /**
  * @Auther: miv
@@ -8,7 +8,6 @@ package com.central.zuul.exection;
  * @Description: 无效token
  */
 
-import com.central.common.model.Result;
 import com.google.gson.Gson;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.AuthenticationException;

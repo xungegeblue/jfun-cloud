@@ -9,8 +9,7 @@ import java.util.List;
  * @author 作者 owen E-mail: 624191343@qq.com
  * @version 创建时间：2017年11月12日 上午22:57:51 url白名单处理 application.yml中配置需要放权的url白名单
  */
-// @ConfigurationProperties(prefix = "permit")
-@ConfigurationProperties(prefix = "security.oauth2")
+@ConfigurationProperties(prefix = "jfun")
 public class PermitUrlProperties {
 
 	/**

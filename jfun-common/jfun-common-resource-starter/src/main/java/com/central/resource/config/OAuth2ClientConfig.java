@@ -1,5 +1,8 @@
 package com.central.resource.config;
 
+import com.central.resource.exception.AuthExceptionEntryPoint;
+import com.central.resource.exception.CustomAccessDeniedHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +13,6 @@ import org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHand
 import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurityExpressionHandler;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
@@ -21,9 +23,10 @@ import org.springframework.stereotype.Component;
  * @Email: 787824374@qq.com
  * @Description:
  */
-@Component
-@Configuration
-@EnableResourceServer
+//@Slf4j
+//@Component
+//@Configuration
+//@EnableResourceServer
 public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired
@@ -31,27 +34,22 @@ public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired
     private OAuth2WebSecurityExpressionHandler expressionHandler;
-    @Autowired
-    private OAuth2AccessDeniedHandler oAuth2AccessDeniedHandler;
 
     @Autowired
-    private AuthenticationEntryPoint authenticationEntryPoint;
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    @Autowired
+    private AuthExceptionEntryPoint authExceptionEntryPoint;
 
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
         resources.tokenStore(tokenStore);
         resources.stateless(true);
-        resources.authenticationEntryPoint(authenticationEntryPoint);
+        resources.authenticationEntryPoint(authExceptionEntryPoint);
         resources.expressionHandler(expressionHandler);
-        resources.accessDeniedHandler(oAuth2AccessDeniedHandler);
+        resources.accessDeniedHandler(customAccessDeniedHandler);
 
     }
 
-    @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.headers().frameOptions().disable();
-        http.authorizeRequests().anyRequest().authenticated();
-    }
 }

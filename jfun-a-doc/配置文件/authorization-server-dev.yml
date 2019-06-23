@@ -12,3 +12,11 @@ server:
   tomcat:
     uri-encoding: UTF-8
   port: 9004
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always

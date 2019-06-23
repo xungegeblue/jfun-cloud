@@ -22,6 +22,9 @@ public class Permission implements Serializable {
     private String alias;//中文名称
     private Long pid; //父编号
 
+    private String url;
+    private String method;
+
     @TableField(value = "create_time")
     private Timestamp createTime;
 

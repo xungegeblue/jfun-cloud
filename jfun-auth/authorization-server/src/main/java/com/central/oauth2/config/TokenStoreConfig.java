@@ -1,6 +1,6 @@
-package com.central.resource.config;
+package com.central.oauth2.config;
 
-import com.central.resource.token.ResJwtAccessTokenConverter;
+import com.central.oauth2.token.ResJwtAccessTokenConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -29,8 +29,14 @@ import javax.sql.DataSource;
 @Slf4j
 @Configuration
 public class TokenStoreConfig {
-    @Autowired(required = false)
+    @Resource
     private DataSource dataSource;
+
+    @Resource
+    RedisProperties redisProperties;
+
+    @Autowired(required = false)
+    private RedisTemplate<String, Object> redisTemplate;
 
 
     @Bean
@@ -42,7 +48,7 @@ public class TokenStoreConfig {
 
 
     @Bean
-    @ConditionalOnProperty(prefix = "jfun", name = "tokenStoreType", havingValue = "redis",matchIfMissing = true)
+    @ConditionalOnProperty(prefix = "jfun", name = "tokenStoreType", havingValue = "redis")
     public RedisTokenStore redisStore(RedisConnectionFactory redisConnectionFactory) {
         //redis 集群
         log.info("-------------> 使用redis token");

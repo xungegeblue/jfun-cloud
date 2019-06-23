@@ -7,6 +7,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.web.client.RestTemplate;
 
@@ -31,4 +32,9 @@ public class AuthorizationServerApp {
     public static void main(String[] args) {
         SpringApplication.run(AuthorizationServerApp.class, args);
     }
+
+
+    // TODO 1.加上验证码
+    // TODO 2.手机验证码登陆
+
 }

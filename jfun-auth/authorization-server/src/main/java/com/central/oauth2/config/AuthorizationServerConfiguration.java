@@ -17,6 +17,7 @@ import org.springframework.security.oauth2.provider.code.JdbcAuthorizationCodeSe
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.sql.DataSource;
 
@@ -43,6 +44,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     DataSource dataSource;
 
+    @Autowired
+    TokenStore tokenStore;
+
+    @Autowired(required = false)
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     //定义令牌端点
     @Override
@@ -51,10 +57,13 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         endpoints
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
-                .tokenStore(tokenStore())
+                .tokenStore(tokenStore)
                 .authorizationCodeServices(authorizationCodeServices())
                 .reuseRefreshTokens(false);
-
+        // jwt支持
+        if (jwtAccessTokenConverter != null) {
+            endpoints.accessTokenConverter(jwtAccessTokenConverter);
+        }
 
     }
 
@@ -81,10 +90,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     //=================================
 
     //token
-    @Bean
-    public TokenStore tokenStore() {
-        return new JdbcTokenStore(dataSource);
-    }
+//    @Bean
+//    public TokenStore tokenStore() {
+//        return new JdbcTokenStore(dataSource);
+//    }
 
     //授权码
     @Bean

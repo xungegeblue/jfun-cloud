@@ -44,6 +44,7 @@
         <jfun.cloud.version>1.0</jfun.cloud.version>
         <social.version>1.1.6.RELEASE</social.version>
         <spring-boot-admin.version>2.0.4</spring-boot-admin.version>
+        <sentinel.version>0.2.2.RELEASE</sentinel.version>
     </properties>
 
 
@@ -84,6 +85,11 @@
     <dependencyManagement>
 
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
             <dependency>
                 <groupId>de.codecentric</groupId>
                 <artifactId>spring-boot-admin-starter-server</artifactId>

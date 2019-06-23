@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.central.user.dao.PermissionMapper">
+    <select id="findResource" resultType="com.central.common.vo.Resource">
+        select * from sys_permission
+        <where>
+            <if test="names!=null and names.size > 0">
+                name in
+                <foreach collection="names" open="(" close=")" item="name" separator=",">
+                    #{name}
+                </foreach>
+            </if>
+        </where>
+
+    </select>
+
+</mapper>

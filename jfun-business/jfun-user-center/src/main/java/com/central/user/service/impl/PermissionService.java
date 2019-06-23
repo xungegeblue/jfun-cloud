@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.central.common.model.Menu;
+import com.central.common.vo.Resource;
 import com.central.user.dao.PermissionMapper;
 import com.central.common.model.Permission;
 import com.central.user.service.IPermissionService;
@@ -95,6 +96,8 @@ public class PermissionService extends ServiceImpl<PermissionMapper, Permission>
         }
         return tree;
     }
+
+
 
 
     IPage<Permission> buildTree(IPage<Permission> page) {
