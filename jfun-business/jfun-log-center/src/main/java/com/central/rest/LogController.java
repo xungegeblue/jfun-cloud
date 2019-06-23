@@ -1,5 +1,6 @@
 package com.central.rest;
 
+import org.apache.skywalking.apm.toolkit.trace.Trace;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,8 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LogController {
 
-
-
+    @Trace
     @GetMapping("log")
     public Object log() {
         return "log";

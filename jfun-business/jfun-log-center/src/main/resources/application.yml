@@ -45,4 +45,4 @@ spring:
         url-pattern: /*
         exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
 server:
-  port: 8080
+  port: 8081

@@ -12,10 +12,10 @@
     <artifactId>jfun-log-center</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>cn.xiejx</groupId>
-            <artifactId>jfun-common-resource-starter</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>cn.xiejx</groupId>-->
+<!--            <artifactId>jfun-common-resource-starter</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>cn.xiejx</groupId>
             <artifactId>jfun-common-db-start</artifactId>
@@ -28,6 +28,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>${nacos-config-spring-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.skywalking</groupId>
+            <artifactId>apm-toolkit-trace</artifactId>
+            <version>5.0.0-beta2</version>
         </dependency>
     </dependencies>
 </project>
