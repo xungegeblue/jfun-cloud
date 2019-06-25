@@ -1,0 +1,10 @@
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+   - /Users/mac/apps/code/jfun-cloud/logs/log/ZUUL-CENTER/*.log
+  tags: ["jfun-cloud"]
+setup.template.settings:
+  index.number_of_shards: 3
+output.elasticsearch:
+  hosts: ["localhost:9200"]

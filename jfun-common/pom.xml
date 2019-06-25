@@ -17,6 +17,7 @@
         <module>jfun-common-redis-starter</module>
         <module>jfun-common-db-start</module>
         <module>jfun-common-resource-starter</module>
+        <module>jfun-common-log-starter</module>
     </modules>
 
  </project>

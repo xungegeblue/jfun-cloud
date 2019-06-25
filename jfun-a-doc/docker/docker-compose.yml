@@ -1,0 +1,58 @@
+version: '3'
+services:
+  redis:
+    image: redis:alpine
+    container_name: jfun-reids
+    volumes:
+      - ./data/redis:/data
+    environment:
+      - REDIS_PASSWORD=123456
+    #command: redis-cli config set requirepass 123456
+    networks:
+      - jfun-net
+    ports:
+      - 6379:6379
+
+  elasticsearch:
+    image: elasticsearch:6.5.4
+    container_name: jfun-elasticsearch
+    environment:
+      - cluster.name=elasticsearch
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - node.name=elasticsearch_node_1
+      - "discovery.zen.ping.unicast.hosts=es1"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./data/elasticsearch/data:/usr/share/elasticsearch/data
+      - ./data/elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./data/elasticsearch/logs:/usr/share/elasticsearch/logs
+      - ./data/elasticsearch/plugins:/usr/share/elasticsearch/plugins
+    networks:
+      - jfun-net
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana-oss:6.1.4
+    container_name: jfun-kibana
+    volumes:
+      - ./data/kibana/logs:/var/logs/kibana
+    networks:
+      - jfun-net
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - elasticsearch
+
+
+networks:
+  jfun-net:
+    external: false
