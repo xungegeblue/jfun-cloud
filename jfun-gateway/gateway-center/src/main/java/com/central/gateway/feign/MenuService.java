@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-23 07:27
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -20,7 +20,11 @@ import java.util.List;
 @FeignClient(name = ServiceNameContant.USER_CENTER, fallbackFactory = MenuServiceFallbackFactory.class, decode404 = true)
 public interface MenuService {
 
-    //弃用
+    /**
+     * 弃用
+     * @param roleCodes
+     * @return
+     */
     @GetMapping(value = "/menu/{roleCodes}")
     List<MenuVo> findByRoleCodes(@PathVariable("roleCodes") String roleCodes);
 }

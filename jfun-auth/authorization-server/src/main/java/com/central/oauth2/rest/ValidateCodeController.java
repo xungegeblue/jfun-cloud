@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 17:14
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

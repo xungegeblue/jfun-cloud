@@ -7,7 +7,7 @@ import com.google.code.kaptcha.util.Config;
 import java.util.Properties;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 17:23
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

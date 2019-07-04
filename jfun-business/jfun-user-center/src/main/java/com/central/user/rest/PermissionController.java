@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-08 05:43
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -31,7 +31,12 @@ public class PermissionController {
     @Autowired
     IPermissionService permissionService;
 
-    //查询
+    /**
+     * 查询
+     * @param page
+     * @param resource
+     * @return
+     */
     @GetMapping(value = "/permission")
     public ResponseEntity selectPermission(Page page, Permission resource) {
         IPage<Permission> iPage = permissionService.selectPermission(page, resource);
@@ -41,7 +46,7 @@ public class PermissionController {
         return ResponseEntity.ok(iPage);
     }
 
-    //查询
+
     @GetMapping(value = "/permission/tree")
     public ResponseEntity tree() {
         List<Permission> list = permissionService.list();
@@ -53,21 +58,18 @@ public class PermissionController {
     }
 
 
-    //删除
     @DeleteMapping(value = "/permission/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         permissionService.del(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    //修改
     @PutMapping(value = "/permission")
     public ResponseEntity edit(@Validated @RequestBody Permission resource) {
         permissionService.updateById(resource);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
-    //添加
     @PostMapping(value = "/permission")
     public ResponseEntity create(@Validated @RequestBody Permission resource) {
         resource.setCreateTime(DateUtil.date().toTimestamp());

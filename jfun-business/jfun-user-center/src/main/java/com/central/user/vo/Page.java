@@ -6,7 +6,11 @@ package com.central.user.vo;
  */
 public class Page extends com.baomidou.mybatisplus.extension.plugins.pagination.Page {
     private long page;
-    //mybatis的当前页是从1开始的
+
+    /**
+     * mybatis的当前页是从1开始的
+     * @param page
+     */
     public void setPage(long page) {
         this.page=page+1;
         this.setCurrent(this.page);

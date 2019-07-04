@@ -28,7 +28,7 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-23 07:38
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -36,7 +36,7 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Service
-public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
+public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IMenuService {
 
     @Override
     public List<MenuDTO> findByRoleCodes(Set<String> roleCodes) {
@@ -71,10 +71,10 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
 
     @Override
     public Object buildUserMenus(User user) {
-        List<Role> menuDTOList = user.getRoles();
-        List<MenuDTO> menus = getMenuByRole(menuDTOList);
-        List<MenuDTO> menuDTOTree = (List<MenuDTO>) buildTree(menus).get("content");
-        return buildMenus(menuDTOTree);
+        List<Role> menuDtoList = user.getRoles();
+        List<MenuDTO> menus = getMenuByRole(menuDtoList);
+        List<MenuDTO> menuDtoTree = (List<MenuDTO>) buildTree(menus).get("content");
+        return buildMenus(menuDtoTree);
     }
 
     @Override
@@ -111,11 +111,11 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
         return collect;
     }
 
-    public List<MenuVo> buildMenus(List<MenuDTO> menuDTOS) {
+    public List<MenuVo> buildMenus(List<MenuDTO> menuDtos) {
         List<MenuVo> list = new LinkedList<>();
-        menuDTOS.forEach(menuDTO -> {
+        menuDtos.forEach(menuDTO -> {
                     if (menuDTO != null) {
-                        List<MenuDTO> menuDTOList = menuDTO.getChildren();
+                        List<MenuDTO> menuDtoList = menuDTO.getChildren();
                         MenuVo menuVo = new MenuVo();
                         menuVo.setName(menuDTO.getName());
                         menuVo.setPath(menuDTO.getPath());
@@ -131,10 +131,10 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
                             }
                         }
                         menuVo.setMeta(new MenuMetaVo(menuDTO.getName(), menuDTO.getIcon()));
-                        if (menuDTOList != null && menuDTOList.size() != 0) {
+                        if (menuDtoList != null && menuDtoList.size() != 0) {
                             menuVo.setAlwaysShow(true);
                             menuVo.setRedirect("noredirect");
-                            menuVo.setChildren(buildMenus(menuDTOList));
+                            menuVo.setChildren(buildMenus(menuDtoList));
                             // 处理是一级菜单并且没有子菜单的情况
                         } else if (menuDTO.getPid().equals(0L)) {
                             MenuVo menuVo1 = new MenuVo();
@@ -161,9 +161,9 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
         return list;
     }
 
-    public Map buildTree(List<MenuDTO> menuDTOS) {
+    public Map buildTree(List<MenuDTO> menuDtos) {
         //排序
-        menuDTOS = menuDTOS.stream().sorted(new Comparator<MenuDTO>() {
+        menuDtos = menuDtos.stream().sorted(new Comparator<MenuDTO>() {
             @Override
             public int compare(MenuDTO o1, MenuDTO o2) {
                 return o1.getSort().intValue() - o2.getSort().intValue();
@@ -172,13 +172,13 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
 
         List<MenuDTO> trees = new ArrayList<MenuDTO>();
 
-        for (MenuDTO menuDTO : menuDTOS) {
+        for (MenuDTO menuDTO : menuDtos) {
 
             if ("0".equals(menuDTO.getPid().toString())) {
                 trees.add(menuDTO);
             }
 
-            for (MenuDTO it : menuDTOS) {
+            for (MenuDTO it : menuDtos) {
                 if (it.getPid().equals(menuDTO.getId())) {
                     if (menuDTO.getChildren() == null) {
                         menuDTO.setChildren(new ArrayList<MenuDTO>());
@@ -187,9 +187,9 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
                 }
             }
         }
-        Map map = new HashMap();
-        map.put("content", trees.size() == 0 ? menuDTOS : trees);
-        map.put("totalElements", menuDTOS != null ? menuDTOS.size() : 0);
+        Map map = new HashMap(16);
+        map.put("content", trees.size() == 0 ? menuDtos : trees);
+        map.put("totalElements", menuDtos != null ? menuDtos.size() : 0);
         return map;
     }
 

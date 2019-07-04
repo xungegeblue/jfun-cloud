@@ -18,7 +18,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 18:20
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -26,7 +26,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @Service
 @Slf4j
-public class ValidateCodeService implements IValidateCodeService {
+public class ValidateCodeServiceImpl implements IValidateCodeService {
     @Autowired
     private RedisRepository redisRepository;
 

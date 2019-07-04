@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-12 12:36
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

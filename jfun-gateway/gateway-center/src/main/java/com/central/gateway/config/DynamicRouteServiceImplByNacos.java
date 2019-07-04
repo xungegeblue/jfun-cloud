@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.Executor;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-20 15:06
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -28,7 +28,9 @@ public class DynamicRouteServiceImplByNacos {
     @Autowired
     private DynamicRouteService dynamicRouteService;
 
-    //@Value(value = "${jfun.nacos-addr}")
+    /**
+     * nacos地址
+     */
     public String nacosAddr = "127.0.0.1:8848";
 
     public DynamicRouteServiceImplByNacos() {

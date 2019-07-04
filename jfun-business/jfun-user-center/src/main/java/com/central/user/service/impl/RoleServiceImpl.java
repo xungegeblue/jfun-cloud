@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * @Date 2019/4/23
  */
 @Service
-public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleService {
+public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
 
 
     @Override
@@ -40,7 +40,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
         return baseMapper.selectRolesPage(page, resource);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int del(Long id) {
         //如果该角色有对于的用户那么不予删除

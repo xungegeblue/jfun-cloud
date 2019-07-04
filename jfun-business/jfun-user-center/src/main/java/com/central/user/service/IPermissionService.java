@@ -16,14 +16,40 @@ import java.util.Set;
  * @Date 2019/4/23
  */
 public interface IPermissionService extends IService<Permission> {
+    /**
+     * 获取角色的权限
+     * @param rid
+     * @return
+     */
     Set<Permission> findByRoleId(long rid);
 
+    /**
+     * 获取权限
+     * @param page
+     * @param resource
+     * @return
+     */
     IPage<Permission> selectPermission(Page page, Permission resource);
 
+    /**
+     * 删除
+     * @param id
+     * @return
+     */
     int del(Long id);
 
+    /**
+     * 构造树形结构
+     * @param records
+     * @return
+     */
     List<Permission> buildTree(List<Permission> records);
 
+    /**
+     *获取权限树形结构
+     * @param list
+     * @return 权限信息
+     */
     List<PermissionTreeItem> buildSelectTree(List<PermissionTreeItem> list);
 
 }

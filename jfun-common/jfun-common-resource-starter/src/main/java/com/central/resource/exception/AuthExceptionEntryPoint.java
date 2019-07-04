@@ -1,7 +1,7 @@
 package com.central.resource.exception;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-10 16:17
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -28,7 +28,7 @@ public class AuthExceptionEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws ServletException {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<String, Object>(16);
         Throwable cause = authException.getCause();
 
         response.setStatus(HttpStatus.OK.value());

@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-02 19:47
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

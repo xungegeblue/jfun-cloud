@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-14 05:35
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

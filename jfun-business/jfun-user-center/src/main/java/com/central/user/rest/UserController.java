@@ -18,7 +18,7 @@ import sun.rmi.runtime.Log;
 import java.util.*;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-21 19:26
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -44,7 +44,12 @@ public class UserController {
        return loginAppUser;
     }
 
-    //查询用户
+    /**
+     * 查询用户
+     * @param page
+     * @param resource
+     * @return
+     */
     @GetMapping(value = "/user")
     public ResponseEntity user(Page page,User resource){
         IPage<User> iPage = userService.selectUserPage(page, resource);
@@ -52,20 +57,33 @@ public class UserController {
     }
 
 
-    //删除用户
+    /**
+     * 删除用户
+     * @param id
+     * @return
+     */
     @DeleteMapping(value = "/users/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         userService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    //修改用户
+    /**
+     * 修改用户
+     * @param resource
+     * @return
+     */
     @PutMapping(value = "/user")
     public ResponseEntity edit(@Validated @RequestBody User resource) {
         userService.update(resource);
         return ResponseEntity.ok(HttpStatus.OK);
     }
-    //添加用户
+
+    /**
+     * 添加用户
+     * @param resource
+     * @return
+     */
     @PostMapping(value = "/user")
     public ResponseEntity create(@Validated @RequestBody User resource){
         userService.create(resource);

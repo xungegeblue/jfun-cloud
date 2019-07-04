@@ -20,11 +20,18 @@ public interface IValidateCodeService {
      */
     void saveImageCode(String deviceId, String imageCode);
 
-     Result sendSmsCode(String mobile);
+    /**
+     * 发送验证码
+     * @param mobile
+     * @return 是否成功
+     */
+    Result sendSmsCode(String mobile);
+
 
     /**
      * 获取验证码
      * @param deviceId 前端唯一标识/手机号
+     * @return 验证码
      */
     String getCode(String deviceId);
 
@@ -34,8 +41,10 @@ public interface IValidateCodeService {
      */
     void remove(String deviceId);
 
+
     /**
-     * 验证验证码
+     *  验证验证码
+     * @param request
      */
     void validate(HttpServletRequest request);
 }

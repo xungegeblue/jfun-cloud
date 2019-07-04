@@ -24,7 +24,13 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
+/**
+ * @author: miv
+ * @Date: 2019-06-02 19:49
+ * @Web: www.xiejx.cn
+ * @Email: 787824374@qq.com
+ * @Description:
+ */
 @Component
 @Configuration
 public class SecurityHandlerConfig {
@@ -52,7 +58,7 @@ public class SecurityHandlerConfig {
                     msg = exception.getMessage();
                 }
 
-                Map<String, String> rsp = new HashMap<>();
+                Map<String, String> rsp = new HashMap<>(16);
 
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
@@ -83,7 +89,7 @@ public class SecurityHandlerConfig {
             public void commence(HttpServletRequest request, HttpServletResponse response,
                                  AuthenticationException authException) throws IOException, ServletException {
 
-                Map<String, String> rsp = new HashMap<>();
+                Map<String, String> rsp = new HashMap<>(16);
 
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
 
@@ -118,7 +124,7 @@ public class SecurityHandlerConfig {
             @Override
             public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException authException) throws IOException, ServletException {
 
-                Map<String, String> rsp = new HashMap<>();
+                Map<String, String> rsp = new HashMap<>(16);
                 response.setContentType("application/json;charset=UTF-8");
 
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());

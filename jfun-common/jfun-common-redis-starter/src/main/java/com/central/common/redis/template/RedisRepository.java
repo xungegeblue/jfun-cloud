@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 20:27
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -27,13 +27,19 @@ import java.util.*;
  */
 @Slf4j
 public class RedisRepository {
-    //设置字符编码
+    /**
+     * 设置字符编码
+     */
     private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
 
-    //key序列化
+    /**
+     * key序列化
+     */
     private static final StringRedisSerializer STRING_SERIALIZER = new StringRedisSerializer();
 
-    //value序列化
+    /**
+     * value序列化
+     */
     private static final RedisObjectSerializer OBJECT_SERIALIZER = new RedisObjectSerializer();
 
 
@@ -47,13 +53,19 @@ public class RedisRepository {
         this.redisTemplate = redisTemplate;
     }
 
-    //获取连接工厂
+    /**
+     * 获取连接工厂
+     * @return
+     */
     public RedisConnectionFactory getConnectionFactory(){
         return this.redisTemplate.getConnectionFactory();
     }
 
-    //清空DB
-    public void flushDB(RedisClusterNode node){
+    /**
+     * 清空DB
+     * @param node
+     */
+    public void flushDb(RedisClusterNode node){
         this.redisTemplate.opsForCluster().flushDb(node);
     }
     /**
@@ -312,7 +324,7 @@ public class RedisRepository {
      *
      * @return the string
      */
-    public String flushDB() {
+    public String flushDb() {
         return redisTemplate.execute((RedisCallback<String>) connection -> {
             connection.flushDb();
             return "ok";

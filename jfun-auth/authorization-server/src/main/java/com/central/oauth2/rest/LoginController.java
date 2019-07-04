@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-03 23:39
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

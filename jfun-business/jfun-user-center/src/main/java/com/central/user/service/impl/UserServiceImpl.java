@@ -30,10 +30,12 @@ import java.util.stream.Collectors;
  * @Date 2019/4/23
  */
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> implements IUserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Autowired
     IRoleService roleService;
+
+    @Override
     public User getByUsername(String userName) {
         return baseMapper.getByUsername(userName);
     }
@@ -48,7 +50,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         return baseMapper.deleteById(id);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int update(User resource) {
         UpdateWrapper<User> wrapper = new UpdateWrapper<>();
@@ -60,7 +62,7 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         return i;
     }
 
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public User create(User resource) {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -96,7 +98,10 @@ public class UserService extends ServiceImpl<UserMapper, User> implements IUserS
         return loginAppUser;
     }
 
-    //设置角色关系
+    /**
+     * 设置角色关系
+     * @param resource
+     */
     private void relationRole(User resource) {
         List<Long> roleIds = resource.getRoles().stream().map(Role::getId).collect(Collectors.toList());
         baseMapper.delUserRoleByUid(resource.getId());

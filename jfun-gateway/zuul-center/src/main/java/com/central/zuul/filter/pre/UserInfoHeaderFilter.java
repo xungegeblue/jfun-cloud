@@ -2,21 +2,15 @@ package com.central.zuul.filter.pre;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.central.common.constant.SecurityConstants;
-import com.central.common.model.User;
-import com.central.zuul.service.impl.AuthenticationService;
-import com.central.zuul.service.impl.ResourceService;
+import com.central.zuul.service.impl.AuthenticationServiceImpl;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.provider.OAuth2Authentication;
 import org.springframework.stereotype.Component;
-
-import javax.servlet.http.HttpServletRequest;
 
 import static org.springframework.cloud.netflix.zuul.filters.support.FilterConstants.FORM_BODY_WRAPPER_FILTER_ORDER;
 
@@ -30,7 +24,7 @@ import static org.springframework.cloud.netflix.zuul.filters.support.FilterConst
 public class UserInfoHeaderFilter extends ZuulFilter {
 
     @Autowired
-    AuthenticationService authenticationService;
+    AuthenticationServiceImpl authenticationService;
 
     @Override
     public String filterType() {

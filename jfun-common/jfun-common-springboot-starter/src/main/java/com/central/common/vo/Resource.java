@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import org.apache.ibatis.annotations.ConstructorArgs;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-21 16:26
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

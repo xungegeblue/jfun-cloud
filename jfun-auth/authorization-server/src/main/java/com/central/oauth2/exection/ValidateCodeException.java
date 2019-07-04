@@ -3,7 +3,7 @@ package com.central.oauth2.exection;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-01 02:25
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

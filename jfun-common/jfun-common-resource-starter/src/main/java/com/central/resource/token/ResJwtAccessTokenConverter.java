@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-21 04:48
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -28,11 +28,11 @@ public class ResJwtAccessTokenConverter extends JwtAccessTokenConverter {
 
 
         public JwtUserAuthenticationConverter() {
-            super.setUserTokenConverter(new JWTfaultUserAuthenticationConverter());
+            super.setUserTokenConverter(new JwtfaultUserAuthenticationConverter());
         }
 
 
-        public class JWTfaultUserAuthenticationConverter extends DefaultUserAuthenticationConverter {
+        public class JwtfaultUserAuthenticationConverter extends DefaultUserAuthenticationConverter {
 
 
             @Override

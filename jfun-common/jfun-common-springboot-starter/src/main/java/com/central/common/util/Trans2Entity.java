@@ -34,16 +34,16 @@ public class Trans2Entity {
         return menuDTO;
     }
 
-    public  Map buildTree(List<MenuDTO> menuDTOS) {
+    public  Map buildTree(List<MenuDTO> menuDtos) {
         List<MenuDTO> trees = new ArrayList<MenuDTO>();
 
-        for (MenuDTO menuDTO : menuDTOS) {
+        for (MenuDTO menuDTO : menuDtos) {
 
             if ("0".equals(menuDTO.getPid().toString())) {
                 trees.add(menuDTO);
             }
 
-            for (MenuDTO it : menuDTOS) {
+            for (MenuDTO it : menuDtos) {
                 if (it.getPid().equals(menuDTO.getId())) {
                     if (menuDTO.getChildren() == null) {
                         menuDTO.setChildren(new ArrayList<MenuDTO>());
@@ -52,17 +52,17 @@ public class Trans2Entity {
                 }
             }
         }
-        Map map = new HashMap();
-        map.put("content",trees.size() == 0?menuDTOS:trees);
-        map.put("totalElements",menuDTOS!=null?menuDTOS.size():0);
+        Map map = new HashMap(16);
+        map.put("content",trees.size() == 0?menuDtos:trees);
+        map.put("totalElements",menuDtos!=null?menuDtos.size():0);
         return map;
     }
 
-    public List<MenuVo> buildMenus(List<MenuDTO> menuDTOS) {
+    public List<MenuVo> buildMenus(List<MenuDTO> menuDtos) {
         List<MenuVo> list = new LinkedList<>();
-        menuDTOS.forEach(menuDTO -> {
+        menuDtos.forEach(menuDTO -> {
                     if (menuDTO!=null){
-                        List<MenuDTO> menuDTOList = menuDTO.getChildren();
+                        List<MenuDTO> menuDtoList = menuDTO.getChildren();
                         MenuVo menuVo = new MenuVo();
                         menuVo.setName(menuDTO.getName());
                         menuVo.setPath(menuDTO.getPath());
@@ -78,10 +78,10 @@ public class Trans2Entity {
                             }
                         }
                         menuVo.setMeta(new MenuMetaVo(menuDTO.getName(),menuDTO.getIcon()));
-                        if(menuDTOList!=null && menuDTOList.size()!=0){
+                        if(menuDtoList!=null && menuDtoList.size()!=0){
                             menuVo.setAlwaysShow(true);
                             menuVo.setRedirect("noredirect");
-                            menuVo.setChildren(buildMenus(menuDTOList));
+                            menuVo.setChildren(buildMenus(menuDtoList));
                             // 处理是一级菜单并且没有子菜单的情况
                         } else if(menuDTO.getPid().equals(0L)){
                             MenuVo menuVo1 = new MenuVo();

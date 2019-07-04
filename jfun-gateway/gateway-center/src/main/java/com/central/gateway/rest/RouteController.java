@@ -28,12 +28,10 @@ public class RouteController {
     @Autowired
     RouteDefinitionRepository repository;
 
-
-//    @GetMapping("route")
-//    public ResponseEntity data() {
-//        Object list = repository.getRouteDefinitions();
-//        return ResponseEntity.ok(list);
-//    }
+    /**
+     * 获取路由信息
+     * @return
+     */
     @GetMapping("route")
     public ResponseEntity data() {
         Object list = repository.getRouteDefinitions();

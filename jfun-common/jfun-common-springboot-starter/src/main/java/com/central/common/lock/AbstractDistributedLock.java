@@ -1,7 +1,7 @@
 package com.central.common.lock;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-01 00:34
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

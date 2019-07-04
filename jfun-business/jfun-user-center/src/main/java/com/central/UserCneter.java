@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-18 17:45
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

@@ -27,10 +27,7 @@ import java.util.stream.Collectors;
 
 @Service("userDetailsService")
 @Slf4j
-public class SQLUserDetailsService implements UserDetailsService {
-
-//    @Autowired
-//    RestTemplate restTemplate;
+public class SqlUserDetailsServiceImpl implements UserDetailsService {
 
 
     @Resource
@@ -38,14 +35,11 @@ public class SQLUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        //String user =  restTemplate.getForObject("http://user-center/user?username="+label , String.class);
         LoginAppUser loginAppUser = userService.findByUsername(name);
         if (loginAppUser == null) {
             throw new InternalAuthenticationServiceException("用户名或密码错误");
         }
         return loginAppUser;
     }
-
-
 
 }

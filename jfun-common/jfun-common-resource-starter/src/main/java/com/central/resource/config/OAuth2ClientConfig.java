@@ -17,16 +17,13 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.stereotype.Component;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-13 16:37
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
  * @Description:
  */
-//@Slf4j
-//@Component
-//@Configuration
-//@EnableResourceServer
+
 public class OAuth2ClientConfig extends ResourceServerConfigurerAdapter {
 
     @Autowired

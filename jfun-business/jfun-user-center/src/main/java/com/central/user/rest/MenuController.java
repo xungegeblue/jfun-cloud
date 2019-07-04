@@ -10,23 +10,20 @@ import com.central.common.model.User;
 import com.central.common.util.Trans2Entity;
 import com.central.common.vo.MenuVo;
 import com.central.user.service.IUserService;
-import com.central.user.service.impl.MenuService;
+import com.central.user.service.impl.MenuServiceImpl;
 import com.central.user.vo.MenuTreeItem;
 import com.central.user.vo.Page;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-23 16:17
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -37,7 +34,7 @@ import java.util.Set;
 public class MenuController {
 
     @Autowired
-    MenuService menuService;
+    MenuServiceImpl menuService;
 
     @Autowired
     Trans2Entity trans2Entity;
@@ -45,13 +42,17 @@ public class MenuController {
     @Autowired
     IUserService userService;
 
-    //查询角色菜单
+    /**
+     * 查询角色菜单
+     * @param roleCodes
+     * @return
+     */
     @GetMapping("/{roleCodes}")
     public List<MenuVo> findMenuByRoles(@PathVariable String roleCodes) {
         Set<String> roleSet = (Set<String>) Convert.toCollection(HashSet.class, String.class, roleCodes);
         List<MenuDTO> data = menuService.findByRoleCodes(roleSet);
-        List<MenuDTO> menuDTOTree = (List<MenuDTO>) trans2Entity.buildTree(data).get("content");
-        return trans2Entity.buildMenus(menuDTOTree);
+        List<MenuDTO> menuDtoTree = (List<MenuDTO>) trans2Entity.buildTree(data).get("content");
+        return trans2Entity.buildMenus(menuDtoTree);
     }
 
     @GetMapping("build")
@@ -61,13 +62,22 @@ public class MenuController {
         return ResponseEntity.ok(menus);
     }
 
-    //查询
+    /**
+     * 查询菜单
+     * @param page
+     * @param resource
+     * @return
+     */
     @GetMapping
     public ResponseEntity find(Page page, Role resource) {
         IPage<Role> iPage = menuService.selectMenus(page, resource);
         return ResponseEntity.ok(iPage);
     }
 
+    /**
+     * 树形菜单
+     * @return
+     */
     @GetMapping("tree")
     public ResponseEntity tree() {
         List<Menu> menus = menuService.list();
@@ -76,7 +86,11 @@ public class MenuController {
     }
 
 
-    //删除
+    /**
+     * 删除菜单
+     * @param id
+     * @return
+     */
     @DeleteMapping(value = "/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         menuService.del(id);
@@ -84,14 +98,22 @@ public class MenuController {
     }
 
 
-    //修改
+    /**
+     * 修改菜单
+     * @param resource
+     * @return
+     */
     @PutMapping
     public ResponseEntity edit(@RequestBody Menu resource) {
         menuService.updateById(resource);
         return ResponseEntity.ok().build();
     }
 
-    //添加
+    /**
+     * 创建菜单
+     * @param resource
+     * @return
+     */
     @PostMapping
     public ResponseEntity create(@Validated @RequestBody Menu resource) {
         menuService.save(resource);

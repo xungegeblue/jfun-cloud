@@ -16,6 +16,7 @@
         <module>jfun-user-center</module>
         <module>jfun-log-center</module>
         <module>jfun-test</module>
+        <module>jfun-distributed-lock</module>
     </modules>
 
 

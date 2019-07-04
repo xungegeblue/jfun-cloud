@@ -9,16 +9,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Set;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-21 16:28
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
  * @Description:
  */
 @FeignClient(name = ServiceNameContant.USER_CENTER)
-public interface ResourceService {
+public interface ResourceServiceImpl {
 
-    //根据用户角色获取资源
+    /**
+     * 根据用户角色获取资源
+     * @param username
+     * @return
+     */
     @GetMapping("//resource/{username}")
     public Set<Resource> findAll(@PathVariable("username") String username);
 }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-19 13:47
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(name = ServiceNameContant.USER_CENTER)
 public interface AppUserService {
 
+    /**
+     * 根据用户名获取用户信息
+     * @param username
+     * @return
+     */
     @GetMapping("findByUsername")
     public LoginAppUser findByUsername(@RequestParam("username") String username);
 }

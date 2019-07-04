@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-23 07:30
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

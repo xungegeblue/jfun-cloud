@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-10 05:49
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

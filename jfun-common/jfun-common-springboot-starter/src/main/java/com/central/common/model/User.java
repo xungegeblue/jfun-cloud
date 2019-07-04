@@ -10,7 +10,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * @author: miv
+ * @Date: 2019-06-02 19:49
+ * @Web: www.xiejx.cn
+ * @Email: 787824374@qq.com
+ * @Description:
+ */
 @Data
 @TableName(value = "sys_user")
 public class User implements Serializable {

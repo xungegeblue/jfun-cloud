@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.web.cors.CorsUtils;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-22 03:26
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -20,13 +20,6 @@ import org.springframework.web.cors.CorsUtils;
 public class OAuth2ResourceServerConfig extends OAuth2ClientConfig {
     @Override
     public void configure(HttpSecurity http) throws Exception {
-        /*
-        ExpressionUrlAuthorizationConfigurer<HttpSecurity>.ExpressionInterceptUrlRegistry config = http.authorizeRequests();
-
-        // 前后分离 先发出options 放行
-        config.antMatchers(HttpMethod.OPTIONS, "/actuator/**").permitAll()
-                .anyRequest().access("@authenticationService.hasPermissions(request,authentication)");
-        */
         http.authorizeRequests()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .anyRequest().access("@authenticationService.hasPermissions(request,authentication)");

@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 18:12
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -27,7 +27,12 @@ public class ValidateCodeFilter  extends OncePerRequestFilter {
 
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
-    //返回true代表不执行这个过滤器
+    /**
+     * 返回true代表不执行这个过滤器
+     * @param request
+     * @return
+     * @throws ServletException
+     */
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
         return super.shouldNotFilter(request);

@@ -51,8 +51,19 @@ services:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
     depends_on:
       - elasticsearch
-
-
+# zookeeper 单机
+  zookeeper:
+    image: zookeeper:3.5.5
+    restart: always
+    container_name: jfun-zookeeper
+    hostname: zoo1
+    ports:
+      - 2181:2181
+    volumes:
+      - ./data/zk/data:/data
+      - ./data/zk/logs:/logs
 networks:
   jfun-net:
     external: false
+# 查看所有ip
+# docker inspect --format='{{.Name}} - {{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' $(docker ps -aq)

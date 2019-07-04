@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-09 14:35
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

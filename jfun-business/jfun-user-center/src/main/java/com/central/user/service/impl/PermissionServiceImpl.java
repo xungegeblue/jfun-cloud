@@ -22,10 +22,10 @@ import java.util.*;
  * @Date 2019/4/23
  */
 @Service
-public class PermissionService extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
+public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permission> implements IPermissionService {
 
 
-
+    @Override
     public Set<Permission> findByRoleId(long rid) {
         return baseMapper.findByRoleId(rid);
     }

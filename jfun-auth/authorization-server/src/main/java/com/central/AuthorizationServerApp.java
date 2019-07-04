@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.web.client.RestTemplate;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-04-22 16:53
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

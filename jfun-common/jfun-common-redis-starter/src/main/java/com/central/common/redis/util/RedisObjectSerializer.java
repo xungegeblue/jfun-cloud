@@ -7,16 +7,20 @@ import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.SerializationException;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 20:23
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
  * @Description:
  */
 public class RedisObjectSerializer implements RedisSerializer<Object> {
-    // 做一个空数组，不是null
+    /**
+     * 做一个空数组，不是null
+     */
     private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
-    // 为了方便进行对象与字节数组的转换，所以应该首先准备出两个转换器
+    /**
+     *  为了方便进行对象与字节数组的转换，所以应该首先准备出两个转换器
+     */
     private Converter<Object, byte[]> serializingConverter = new SerializingConverter();
     private Converter<byte[], Object> deserializingConverter = new DeserializingConverter();
 

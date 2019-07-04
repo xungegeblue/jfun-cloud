@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 19:54
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -37,7 +37,11 @@ public class RedisAutoConfig {
     @Autowired
     private CacheManagerProperties cacheManagerProperties;
 
-    //Resit templates配置
+    /**
+     * Resit templates配置
+     * @param factory
+     * @return
+     */
     @Bean
     public RedisTemplate<String,Object> redisTemplate(RedisConnectionFactory factory){
         RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();

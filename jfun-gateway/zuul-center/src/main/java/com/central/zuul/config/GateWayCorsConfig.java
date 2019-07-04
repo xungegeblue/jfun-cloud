@@ -7,7 +7,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-09 01:10
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

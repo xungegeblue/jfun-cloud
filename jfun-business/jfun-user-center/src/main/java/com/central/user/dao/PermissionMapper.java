@@ -17,10 +17,19 @@ import java.util.Set;
  */
 @Mapper
 public interface PermissionMapper extends BaseMapper<Permission> {
-    //查询角色的所有权限
+    /**
+     * 查询角色的所有权限
+     * @param rid
+     * @return
+     */
     @Select("SELECT p.* from sys_role_permission up LEFT JOIN sys_permission p ON(up.permission_id = p.id) WHERE up.role_id = #{rid} ")
     Set<Permission> findByRoleId(@Param("rid") long rid);
 
+    /**
+     * 查询权限是否被使用
+     * @param pid
+     * @return
+     */
     @Select("select count(1) from sys_role_permission where permission_id=#{pid}")
     int permissionBinds(@Param("pid") Long pid);
 

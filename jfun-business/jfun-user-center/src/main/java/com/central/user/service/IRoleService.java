@@ -15,19 +15,58 @@ import java.util.Set;
  * @Date 2019/4/23
  */
 public interface IRoleService extends IService<Role> {
+    /**
+     * 查询角色
+     * @param rid
+     * @return
+     */
     Role findRoleByUid(Long rid);
 
+    /**
+     * 查询用户角色
+     * @param uid
+     * @return
+     */
     List<Role> findRoleListByUid(Long uid);
 
+    /**
+     * 查询角色列表
+     * @param page
+     * @param resource
+     * @return
+     */
     IPage<Role> selectRoles(Page page, Role resource);
 
+    /**
+     * 删除角色
+     * @param id
+     * @return
+     */
     int del(Long id);
 
+    /**
+     * 更新角色
+     * @param resource
+     * @return
+     */
     int update(Role resource);
-    
+
+    /**
+     * 创建角色
+     * @param resource
+     * @return
+     */
     Role create(Role resource);
 
+    /**
+     * 更新角色权限
+     * @param resources
+     */
     void updatePermission(Role resources);
 
+    /**
+     * 更新角色菜单
+     * @param resource
+     */
     void updateMenu(Role resource);
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-10 16:19
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -19,7 +19,9 @@ import java.io.IOException;
  */
 @Component("customAccessDeniedHandler")
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-    //https://www.cnblogs.com/bndong/p/10275430.html
+    /**
+     * 参考https://www.cnblogs.com/bndong/p/10275430.html
+     */
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response,
                        AccessDeniedException accessDeniedException)

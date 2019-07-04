@@ -1,7 +1,13 @@
 package com.central.oauth2.constants;
 
 import org.springframework.stereotype.Component;
-
+/**
+ * @author: miv
+ * @Date: 2019-06-02 19:49
+ * @Web: www.xiejx.cn
+ * @Email: 787824374@qq.com
+ * @Description:
+ */
 @Component
 public class FromLoginConstant {
 

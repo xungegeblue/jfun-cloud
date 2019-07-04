@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-08 04:54
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -30,7 +30,12 @@ public class RoleController {
     @Autowired
     IRoleService roleService;
 
-    //查询角色
+    /**
+     * 查询角色
+     * @param page
+     * @param resource
+     * @return
+     */
     @GetMapping(value = "/role")
     public ResponseEntity find(Page page, Role resource) {
         IPage<Role> iPage = roleService.selectRoles(page, resource);
@@ -54,29 +59,45 @@ public class RoleController {
         return ResponseEntity.ok(o);
     }
 
-    //删除角色
+    /**
+     * 删除角色
+     * @param id
+     * @return
+     */
     @DeleteMapping(value = "/role/{id}")
     public ResponseEntity delete(@PathVariable Long id) {
         roleService.del(id);
         return ResponseEntity.ok().build();
     }
 
-    //修改角色对应的菜单和权限
+    /**
+     * 修改角色对应的菜单和权限
+     * @param id
+     * @param resource
+     * @return
+     */
     @PutMapping(value = "/role/{id}")
     public ResponseEntity editMenuAndPermsssion(@PathVariable Long id, @Validated @RequestBody Role resource) {
-        //roleService.update(id, resource.getMenus(), resource.getPermissions());
         roleService.update(resource);
         return ResponseEntity.ok().build();
     }
 
-    //修改角色
+    /**
+     * 修改角色
+     * @param resource
+     * @return
+     */
     @PutMapping(value = "/role")
     public ResponseEntity edit(@RequestBody Role resource) {
         roleService.update(resource);
         return ResponseEntity.ok().build();
     }
 
-    //添加角色
+    /**
+     * 添加角色
+     * @param resource
+     * @return
+     */
     @PostMapping(value = "/role")
     public ResponseEntity create(@Validated @RequestBody Role resource) {
         roleService.create(resource);

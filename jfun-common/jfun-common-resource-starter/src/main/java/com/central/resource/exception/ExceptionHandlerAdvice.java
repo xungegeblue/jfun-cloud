@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-13 16:48
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

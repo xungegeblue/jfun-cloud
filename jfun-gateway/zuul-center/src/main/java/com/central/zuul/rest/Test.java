@@ -1,14 +1,11 @@
 package com.central.zuul.rest;
-
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-24 11:09
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -26,7 +23,6 @@ public class Test {
         org.springframework.cloud.alibaba.sentinel.datasource.RuleType  a;
         return ResponseEntity.ok(o);
     }
-    @SentinelResource("ok")
     @GetMapping("/ok")
     public ResponseEntity ok(){
         return ResponseEntity.ok("ok");

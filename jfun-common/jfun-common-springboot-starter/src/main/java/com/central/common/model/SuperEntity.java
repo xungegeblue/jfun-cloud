@@ -1,7 +1,7 @@
 package com.central.common.model;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-23 16:04
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com

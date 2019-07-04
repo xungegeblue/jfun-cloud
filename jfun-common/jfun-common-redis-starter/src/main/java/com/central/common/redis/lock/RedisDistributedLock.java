@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-05-31 23:58
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -103,11 +103,14 @@ public class RedisDistributedLock extends AbstractDistributedLock {
         return false;
     }
 
-    /*
-    EX seconds – 设置键key的过期时间，单位时秒
-    PX milliseconds – 设置键key的过期时间，单位时毫秒
-    NX – 只有键key不存在的时候才会设置key的值
-    XX – 只有键key存在的时候才会设置key的值
+    /**
+     * EX seconds – 设置键key的过期时间，单位时秒
+     *     PX milliseconds – 设置键key的过期时间，单位时毫秒
+     *     NX – 只有键key不存在的时候才会设置key的值
+     *     XX – 只有键key存在的时候才会设置key的值
+     * @param key
+     * @param expire
+     * @return
      */
     private boolean setRedis(String key, long expire) {
         try {

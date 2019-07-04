@@ -20,7 +20,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-06-13 16:44
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -58,7 +58,7 @@ public class TokenStoreConfig {
 
     @Configuration
     @ConditionalOnProperty(prefix = "jfun", name = "type", havingValue = "tokenStoreType")
-    public static class JWTTokenConfig {
+    public static class JwtTokenConfig {
         @Bean
         public JwtTokenStore jwtTokenStore() {
             log.info("-------------> 使用jwt token");

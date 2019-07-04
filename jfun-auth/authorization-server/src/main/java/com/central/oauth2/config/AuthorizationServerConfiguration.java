@@ -22,7 +22,7 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 import javax.sql.DataSource;
 
 /**
- * @Auther: miv
+ * @author: miv
  * @Date: 2019-04-22 16:46
  * @Web: www.xiejx.cn
  * @Email: 787824374@qq.com
@@ -50,7 +50,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired(required = false)
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
-    //定义令牌端点
+    /**
+     * 定义令牌端点
+     * @param endpoints
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 
@@ -67,7 +71,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     }
 
-    //定义令牌端点约束
+    /**
+     * 定义令牌端点约束
+     * @param oauthServer
+     * @throws Exception
+     */
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
         oauthServer
@@ -78,7 +86,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     }
 
-    //客户端信息
+    /**
+     * 客户端信息
+     * @param clients
+     * @throws Exception
+     */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
@@ -86,16 +98,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     }
 
-
-    //=================================
-
-    //token
-//    @Bean
-//    public TokenStore tokenStore() {
-//        return new JdbcTokenStore(dataSource);
-//    }
-
-    //授权码
+    /**
+     * 使用jdbc数据源的授权码
+     * @return
+     */
     @Bean
     protected AuthorizationCodeServices authorizationCodeServices() {
         return new JdbcAuthorizationCodeServices(dataSource);
