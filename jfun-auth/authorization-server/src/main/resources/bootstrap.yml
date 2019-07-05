@@ -20,4 +20,6 @@ jfun:
   nacos-addr: 127.0.0.1:8848
 #  tokenStoreType : reids/jdbc/jwt
   tokenStoreType: redis
+  ignored:
+    - /logout
 

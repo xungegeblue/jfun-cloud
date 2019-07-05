@@ -23,6 +23,6 @@ public interface ResourceServiceImpl {
      * @param username
      * @return
      */
-    @GetMapping("//resource/{username}")
+    @GetMapping("/resource/{username}")
     public Set<Resource> findAll(@PathVariable("username") String username);
 }

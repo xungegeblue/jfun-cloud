@@ -41,8 +41,8 @@ public interface RoleMapper extends BaseMapper<Role> {
             @Result(column = "id", property = "permissions", many = @Many(select = "com.central.user.dao.PermissionMapper.findByRoleId")),
             @Result(column = "id", property = "menus", many = @Many(select = "com.central.user.dao.MenuMapper.findByRoleId"))
     })
-    @Select("select * from sys_role where id in(select role_id as  id from sys_user_role where role_id=#{rid})")
-    Role findRoleByUid(@Param("rid") Long rid);
+    @Select("select * from sys_role where id in(select role_id as  id from sys_user_role where uid=#{uid})")
+    Role findRoleByUid(@Param("uid") Long uid);
 
     /**
      * 获取角色是否被使用

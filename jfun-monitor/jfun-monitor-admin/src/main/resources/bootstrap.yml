@@ -15,7 +15,9 @@ spring:
         prefix: monitor-admin
       discovery:
         server-addr: ${jfun.nacos-addr}
+server:
+  port: 9007
+
 jfun:
   nacos-addr: 127.0.0.1:8848
-
 
