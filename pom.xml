@@ -24,7 +24,7 @@
         <spring-boot-dependencies.version>2.0.9.RELEASE</spring-boot-dependencies.version>
         <hutool.version>4.5.7</hutool.version>
         <cloud.oauth2.version>2.0.1.RELEASE</cloud.oauth2.version>
-        <fastjson.version>1.2.54</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <security-oauth2.version>2.3.5.RELEASE</security-oauth2.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger.ui.version>1.8.7</swagger.ui.version>
